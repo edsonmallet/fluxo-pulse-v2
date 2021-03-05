@@ -14,13 +14,13 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   input: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: personalStyles.colors.silver,
     textAlign: 'center',
-    height: 50,
+    height: 60,
     width: 50,
     borderRadius: personalStyles.metrics.borderRadius,
     margin: '0 2px',
-    border: `1px solid ${personalStyles.colors.black10}`,
+    border: `1px solid ${personalStyles.colors.black5}`,
     fontSize: 18,
     fontWeight: 700,
     color: personalStyles.colors.black50,

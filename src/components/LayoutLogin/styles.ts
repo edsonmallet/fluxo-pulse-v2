@@ -52,8 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     width: '100%',
-    borderTop: '1px solid #eee',
-    padding: '10px 0',
+    padding: '0 0 10px 0',
     display: 'flex',
     fontSize: 0.7,
     fontWeight: 700,
@@ -63,7 +62,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   footerText: {
-    color: theme.palette.primary.main,
     fontSize: 12,
     fontWeight: 600
   }

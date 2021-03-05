@@ -57,6 +57,7 @@ const Login: React.FC = () => {
             color="primary"
             disabled={!codeValid}
             onClick={() => router.push(`${codePulse}`)}
+            size="large"
           >
             {text('reponseInitButton')}
           </Button>

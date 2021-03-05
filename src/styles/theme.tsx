@@ -22,7 +22,7 @@ const theme = createMuiTheme({
       main: personalStyles.colors.info
     },
     background: {
-      default: personalStyles.colors.silver,
+      default: personalStyles.colors.white,
       paper: personalStyles.colors.white
     }
   },

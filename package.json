@@ -10,11 +10,11 @@
     "format": "prettier --write ."
   },
   "lint-staged": {
-    "./src/**/*.{ts,js,jsx,tsx}": "eslint --fix"
+    "*": "prettier --write"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "prettier --write . && git add -A ."
     }
   },
   "dependencies": {
