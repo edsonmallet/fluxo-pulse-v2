@@ -34,7 +34,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    marginTop: 50,
     flexDirection: 'column',
     backgroundColor: theme.palette.background.paper,
     padding: '50px',
@@ -48,6 +49,23 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start'
+  },
+  footer: {
+    width: '100%',
+    borderTop: '1px solid #eee',
+    padding: '10px 0',
+    display: 'flex',
+    fontSize: 0.7,
+    fontWeight: 700,
+    bottom: 0,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerText: {
+    color: theme.palette.primary.main,
+    fontSize: 12,
+    fontWeight: 600
   }
 }))
 

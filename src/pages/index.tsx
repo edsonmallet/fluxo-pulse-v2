@@ -1,29 +1,79 @@
-import Layout from '@components/Layout'
+import { Button, makeStyles } from '@material-ui/core'
 import useTranslation from '@contexts/Intl'
-import { Button } from '@material-ui/core'
-import { Container } from 'next/app'
 import { useRouter } from 'next/router'
+import LayoutLogin from '@components/LayoutLogin'
+import { useCallback, useState } from 'react'
+import { CodePulse } from '@components/CodePulse'
+import { checkCompanyExists } from '@services/company'
 
-const Home: React.FC = () => {
+const Login: React.FC = () => {
+  const classes = useStyles()
   const { text } = useTranslation()
   const router = useRouter()
+
+  const [codePulse, setCodePulse] = useState<string>('')
+  const [codeValid, setCodeValid] = useState<boolean>(false)
+  const [verifyCode, setVerifyCode] = useState<boolean>(false)
+
+  const checkExistPulse = useCallback(
+    async code => {
+      try {
+        setVerifyCode(true)
+        const company = await checkCompanyExists({ code: code })
+        if (company) {
+          setCodePulse(company.code)
+          setCodeValid(true)
+        }
+
+        setVerifyCode(false)
+      } catch (e) {
+        setVerifyCode(false)
+      }
+    },
+    [codePulse]
+  )
+
+  const handleCode = (code: string) => {
+    setCodePulse(code)
+    if (code.length < 5) setCodeValid(false)
+  }
+
   return (
     <>
-      <Layout title="Dashboard">
-        <Container>
-          <h1>{text('about')} </h1>
-          <p>{text('slogan')} </p>
+      <LayoutLogin title="pageCodeTitle" subtitle="pageCodeDescription">
+        <form autoComplete="off" className={classes.formContent}>
+          <CodePulse
+            length={5}
+            loading={verifyCode}
+            valid={codeValid}
+            onComplete={code => {
+              setCodePulse(code)
+              checkExistPulse(code)
+            }}
+            onChange={code => handleCode(code)}
+          />
           <Button
-            color="primary"
             variant="contained"
-            onClick={() => router.push('/login')}
+            color="primary"
+            disabled={!codeValid}
+            onClick={() => router.push(`${codePulse}`)}
           >
-            Login
+            {text('reponseInitButton')}
           </Button>
-        </Container>
-      </Layout>
+        </form>
+      </LayoutLogin>
     </>
   )
 }
 
-export default Home
+const useStyles = makeStyles(theme => ({
+  formContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%'
+  }
+}))
+
+export default Login
