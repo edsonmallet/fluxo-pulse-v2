@@ -18,7 +18,7 @@ const LayoutLogin: React.FC<LayoutLoginProps> = (props: LayoutLoginProps) => {
   return (
     <>
       <Head>
-        <title>Fluxo</title>
+        <title>Fluxo Pulse</title>
       </Head>
       <div className={classes.root}>
         <div className={classes.container}>
@@ -39,7 +39,7 @@ const LayoutLogin: React.FC<LayoutLoginProps> = (props: LayoutLoginProps) => {
                 height={50}
                 loading="eager"
               />
-              <Typography variant="h6" component="h1">
+              <Typography variant="h5" component="h1">
                 {text(`${props.title}`)}
               </Typography>
               <Typography variant="body2">
@@ -47,6 +47,15 @@ const LayoutLogin: React.FC<LayoutLoginProps> = (props: LayoutLoginProps) => {
               </Typography>
             </div>
             {props.children}
+            <div className={classes.footer}>
+              <Typography className={classes.footerText}>Powered By</Typography>
+              <Image
+                src="/logos/fluxo_icon.svg"
+                width={24}
+                height={24}
+                loading="eager"
+              />
+            </div>
           </div>
         </div>
       </div>

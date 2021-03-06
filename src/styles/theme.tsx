@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles'
+import personalStyles from './styles'
 
 const theme = createMuiTheme({
   typography: {
@@ -6,23 +7,23 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: '#00ab64'
+      main: personalStyles.colors.primary
     },
     secondary: {
-      main: '#3398dc'
+      main: personalStyles.colors.secondary
     },
     error: {
-      main: '#f03434'
+      main: personalStyles.colors.error
     },
     warning: {
-      main: '#f9bf3b'
+      main: personalStyles.colors.warning
     },
     info: {
-      main: '#e4f1fe'
+      main: personalStyles.colors.info
     },
     background: {
-      default: '#f9f9f9',
-      paper: '#fff'
+      default: personalStyles.colors.white,
+      paper: personalStyles.colors.white
     }
   },
   transitions: {
