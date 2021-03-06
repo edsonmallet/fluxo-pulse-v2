@@ -16,14 +16,15 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '10px 0',
-    width: '100%'
+    width: '100%',
+    boxShadow: personalStyles.colors.boxShadow
   },
   main: {
     padding: '10px 20px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     overflow: 'auto',
 
     '&::-webkit-scrollbar-track': {
@@ -42,7 +43,6 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     width: '100%',
-    borderTop: '1px solid #eee',
     padding: '10px 0',
     display: 'flex',
     fontSize: 12,

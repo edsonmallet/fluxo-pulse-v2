@@ -5,6 +5,7 @@ import LayoutLogin from '@components/LayoutLogin'
 import { useCallback, useState } from 'react'
 import { CodePulse } from '@components/CodePulse'
 import { checkCompanyExists } from '@services/company'
+import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined'
 
 const Login: React.FC = () => {
   const classes = useStyles()
@@ -58,8 +59,9 @@ const Login: React.FC = () => {
             disabled={!codeValid}
             onClick={() => router.push(`${codePulse}`)}
             size="large"
+            endIcon={<ArrowForwardOutlinedIcon />}
           >
-            {text('reponseInitButton')}
+            {text('nextButton')}
           </Button>
         </form>
       </LayoutLogin>

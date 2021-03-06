@@ -7,7 +7,7 @@ const personalStyles = {
     error: '#f03434',
     warning: '#f9bf3b',
     info: '#e4f1fe',
-    boxShadow: '2px 2px 8px #0000001A',
+    boxShadow: '0px -5px 15px #0000001A',
 
     black: '#000000',
     black5: '#0000000D',
