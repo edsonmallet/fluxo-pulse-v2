@@ -67,6 +67,8 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
     setCompany(ret)
   }
 
+  const handleInitPulse = () => router.push('/questions')
+
   useEffect(() => {
     getCompany(code)
   }, [])
@@ -124,6 +126,7 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
             size="large"
             endIcon={<ArrowForwardOutlinedIcon />}
             className={classes.button}
+            onClick={() => handleInitPulse()}
           >
             {text('nextButton')}
           </Button>

@@ -6,8 +6,9 @@ import { useCallback, useState } from 'react'
 import { CodePulse } from '@components/CodePulse'
 import { checkCompanyExists } from '@services/company'
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined'
+import { NextPage } from 'next'
 
-const Login: React.FC = () => {
+const Login: NextPage = () => {
   const classes = useStyles()
   const { text } = useTranslation()
   const router = useRouter()
