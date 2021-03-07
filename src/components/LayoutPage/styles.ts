@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
   main: {
     padding: '10px 20px',
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -40,6 +41,9 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: personalStyles.colors.primary,
       border: `1px solid ${personalStyles.colors.primary}`
     }
+  },
+  containerMain: {
+    maxWidth: 800
   },
   footer: {
     width: '100%',

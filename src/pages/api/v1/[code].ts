@@ -11,8 +11,9 @@ const handler: NextApiHandler = async (
     if (!code) {
       return res.status(400).json({ message: '`code` required' })
     }
-    const results: any = await query(queryGetCompanyData, code)
-    return res.json(results[0])
+
+    const results = await query(queryGetCompanyData, code)
+    return res.json(results)
   } catch (e) {
     res.status(500).json({ message: e.message })
   }

@@ -23,17 +23,19 @@ const LayoutPage: React.FC<LayoutProps> = ({
       <div className={classes.container}>
         <header className={classes.header}>
           <Image
-            width={130}
-            height={30}
+            width={128}
+            height={48}
             alt="Logo"
             quality={100}
             src={companyLogoSrc || '/logos/fluxo_logo.svg'}
-            loading="lazy"
-            layout="intrinsic"
+            loading="eager"
+            layout="fixed"
           />
         </header>
 
-        <main className={classes.main}>{children}</main>
+        <main className={classes.main}>
+          <div className={classes.containerMain}>{children}</div>
+        </main>
 
         <footer className={classes.footer}>
           <Typography className={classes.footerText}>Powered By</Typography>
