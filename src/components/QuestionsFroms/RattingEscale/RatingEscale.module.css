@@ -1,0 +1,112 @@
+.boxRating {
+  width: 100%;
+}
+.ratingEscale {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  background: linear-gradient(to right, #f03434, #f9bf3b, #04d47e);
+  border-radius: 8px;
+}
+.ratingEscale input {
+  display: none;
+}
+
+.ratingEscale label {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  color: #000;
+  font-weight: bold;
+  font-size: 2em;
+  background-color: #f5f5f5;
+}
+
+.ratingEscale label:first-child {
+  border-right: none;
+}
+.ratingEscale label:last-child {
+  border-left: none;
+}
+.ratingEscale input[type='radio']:hover ~ label,
+.ratingEscale input[type='radio']:checked ~ label {
+  background: transparent;
+  color: white;
+}
+.ratingEscale input[type='radio']:checked + label {
+  width: 140%;
+}
+
+.descriptions {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 5px;
+  clear: both;
+}
+.descriptions span:first-child {
+  float: right;
+  text-align: right;
+}
+.descriptions span:last-child {
+  float: left;
+  text-align: left;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .ratingEscale label {
+    font-size: 1em;
+  }
+  .descriptions {
+    font-size: 0.5rem;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  .ratingEscale label {
+    font-size: 1em;
+  }
+  .descriptions {
+    font-size: 0.5rem;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .ratingEscale label {
+    font-size: 2em;
+  }
+  .descriptions {
+    font-size: 0.6rem;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .ratingEscale label {
+    font-size: 2em;
+  }
+  .descriptions {
+    font-size: 0.8rem;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .ratingEscale label {
+    font-size: 2em;
+  }
+}

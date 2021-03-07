@@ -25,3 +25,22 @@ export async function createUser({
   })
   return newUser.data
 }
+
+export interface ResponseQuestion {
+  id: number
+  question: string
+  type_answer: string
+  answers: Array<IAnswers>
+}
+
+interface IAnswers {
+  id: number
+  value: string
+  description: string
+  note: string
+}
+
+export async function getNextQuestion(): Promise<ResponseQuestion> {
+  const question = await api.get(`${endpoints.pulse}/getquestion`)
+  return question.data
+}

@@ -36,6 +36,7 @@ export const StringsPortuguese = {
   labelGroupSubgroup: 'Departamento',
   codeInvalid: 'Código da pesquisa inválido!',
   loading: 'Verificando Código ...',
+  loadingQuestion: 'Buscando pergunta ...',
   valid: 'Código Valido',
   invalid: 'Código inválido'
 }

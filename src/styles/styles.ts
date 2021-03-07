@@ -4,6 +4,7 @@ const personalStyles = {
     text: '#777',
     primary: '#00ab64',
     secondary: '#3398dc',
+    success: '#04d47e',
     error: '#f03434',
     warning: '#f9bf3b',
     info: '#e4f1fe',
