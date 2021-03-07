@@ -9,5 +9,6 @@ const api = axios.create({
 export default api
 
 export const endpoints = {
-  company: '/company'
+  company: '/company',
+  pulse: '/pulse'
 }

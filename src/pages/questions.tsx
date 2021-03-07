@@ -1,54 +1,25 @@
 import LayoutPage from '@components/LayoutPage'
 import useTranslation from '@contexts/Intl'
-import { NextPage, NextPageContext } from 'next'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Swal from 'sweetalert2'
-import { checkCompanyExists } from '@services/company'
 
-interface HomeProps {
-  code: string
-}
-
-const Questions: NextPage<HomeProps> = ({ code }: HomeProps) => {
+const Questions: NextPage = () => {
   const { text } = useTranslation()
-  const [company, setCompany] = useState<any>({})
   const router = useRouter()
   const classes = useStyles()
 
-  const getCompany = async (code: string) => {
-    const ret = await checkCompanyExists({ code })
-    if (!ret) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Ops...',
-        text: 'Empresa não encontrada',
-        willClose: () => router.push('/')
-      })
-    }
-    setCompany(ret)
-  }
-
   const handleInitPulse = () => console.log('Foi/.')
 
-  useEffect(() => {
-    getCompany(code)
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <>
-      <LayoutPage companyLogoSrc={company.logo}>Questions</LayoutPage>
+      <LayoutPage>Questions</LayoutPage>
     </>
   )
-}
-
-Questions.getInitialProps = async ({
-  query
-}: NextPageContext): Promise<HomeProps> => {
-  let { code } = query
-  code = code as string
-  return { code }
 }
 
 const useStyles = makeStyles(theme => ({

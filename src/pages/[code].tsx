@@ -4,12 +4,14 @@ import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import { Button, makeStyles, Typography } from '@material-ui/core'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { checkCompanyExists } from '@services/company'
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined'
 import { SelectField } from '@components/Forms/SelectField'
 import { SelectGroup } from '@components/Forms/SelectGroup'
+import useSettings from '@contexts/Settings'
+import { createUser } from '@services/pulse'
 
 interface HomeProps {
   code: string
@@ -18,6 +20,20 @@ interface HomeProps {
 interface IOptions {
   value: string
   label: string
+}
+
+interface INewUser {
+  gender: string
+  ageGroup: string
+  ageWork: string
+  subgroup: number
+}
+
+const defaultUser = {
+  gender: '',
+  ageGroup: '',
+  ageWork: '',
+  subgroup: 0
 }
 
 const useStyles = makeStyles(theme => ({
@@ -51,10 +67,16 @@ const useStyles = makeStyles(theme => ({
 const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
   const { text } = useTranslation()
   const [company, setCompany] = useState<any>({})
+  const [user, setUser] = useState<INewUser>(defaultUser)
+  const { settings, saveSettings } = useSettings()
   const router = useRouter()
   const classes = useStyles()
 
   const getCompany = async (code: string) => {
+    if (settings.tokenPulse && settings.numberResponseDay <= 20) {
+      router.push('/questions')
+    }
+
     const ret = await checkCompanyExists({ code })
     if (!ret) {
       Swal.fire({
@@ -67,7 +89,33 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
     setCompany(ret)
   }
 
-  const handleInitPulse = () => router.push('/questions')
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setUser({ ...user, [event.target.name]: event.target.value })
+  }
+
+  const handleInitPulse = async () => {
+    if (!settings.tokenPulse && !settings.numberResponseDay) {
+      const newUser = await createUser(user)
+      if (!newUser) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ops...',
+          text: 'Erro ao criar usuário',
+          willClose: () => router.push('/')
+        })
+      }
+      saveSettings({
+        tokenPulse: newUser.digital,
+        currentDate: new Date(),
+        numberResponseDay: 0,
+        logo: company.logo,
+        code: company.code
+      })
+    }
+    router.push('/questions')
+  }
+
+  const validForm = Object.values(user).some(item => item.length === 0)
 
   useEffect(() => {
     getCompany(code)
@@ -94,21 +142,21 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
             label={text('labelGenders')}
             id="gender"
             options={text('genders') as IOptions[]}
-            onChange={event => console.log(event)}
+            onChange={event => handleChange(event)}
           />
 
           <SelectField
             label={text('labelAgeGroup')}
             id="ageGroup"
             options={text('ageGroup') as IOptions[]}
-            onChange={event => console.log(event)}
+            onChange={event => handleChange(event)}
           />
 
           <SelectField
             label={text('labelAgeWork')}
             id="ageWork"
             options={text('ageWork') as IOptions[]}
-            onChange={event => console.log(event)}
+            onChange={event => handleChange(event)}
           />
 
           {company.groups && (
@@ -116,7 +164,7 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
               label={text('subgroup')}
               id="subgroup"
               options={company.groups}
-              onChange={event => console.log(event)}
+              onChange={event => handleChange(event)}
             />
           )}
 
@@ -127,6 +175,7 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
             endIcon={<ArrowForwardOutlinedIcon />}
             className={classes.button}
             onClick={() => handleInitPulse()}
+            disabled={validForm}
           >
             {text('nextButton')}
           </Button>

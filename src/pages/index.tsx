@@ -2,16 +2,18 @@ import { Button, makeStyles } from '@material-ui/core'
 import useTranslation from '@contexts/Intl'
 import { useRouter } from 'next/router'
 import LayoutLogin from '@components/LayoutLogin'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { CodePulse } from '@components/CodePulse'
 import { checkCompanyExists } from '@services/company'
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined'
 import { NextPage } from 'next'
+import useSettings from '@contexts/Settings'
 
 const Login: NextPage = () => {
   const classes = useStyles()
   const { text } = useTranslation()
   const router = useRouter()
+  const { settings } = useSettings()
 
   const [codePulse, setCodePulse] = useState<string>('')
   const [codeValid, setCodeValid] = useState<boolean>(false)
@@ -39,6 +41,12 @@ const Login: NextPage = () => {
     setCodePulse(code)
     if (code.length < 5) setCodeValid(false)
   }
+
+  useEffect(() => {
+    if (settings.tokenPulse && settings.numberResponseDay <= 20) {
+      router.push('/questions')
+    }
+  })
 
   return (
     <>

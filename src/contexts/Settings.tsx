@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
 interface ISettings {
-  openMenu?: boolean
-  openEngagementMenu?: boolean
-  openManagerMenu?: boolean
+  tokenPulse?: string
+  numberResponseDay?: number
+  currentDate?: Date
+  logo?: string
+  code?: string
 }
 
 interface SettingContextData {
@@ -12,9 +14,11 @@ interface SettingContextData {
 }
 
 const defaultSettings: ISettings = {
-  openMenu: true,
-  openEngagementMenu: true,
-  openManagerMenu: true
+  tokenPulse: '',
+  numberResponseDay: 0,
+  currentDate: new Date(),
+  logo: '',
+  code: ''
 }
 
 const SettingsContext = createContext<SettingContextData>({
