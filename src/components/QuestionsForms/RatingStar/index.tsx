@@ -10,7 +10,6 @@ const RatingStar: React.FC<RatingStarProps> = ({
   options,
   onChange
 }: RatingStarProps) => {
-  console.log(options)
   return (
     <div className={styles.boxRating}>
       <div className={styles.ratingStar}>
@@ -20,7 +19,7 @@ const RatingStar: React.FC<RatingStarProps> = ({
               type="radio"
               name="stars"
               id={(item.id as unknown) as string}
-              value={item.value}
+              value={item.note}
               required
               onClick={onChange}
             />

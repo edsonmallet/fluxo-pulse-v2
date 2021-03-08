@@ -1,40 +1,39 @@
+import { Typography } from '@material-ui/core'
 import React from 'react'
-import styles from './RatingEscale.module.css'
+import styles from './Options.module.css'
 
-interface RatingEscaleProps {
+interface OptionsProps {
   options: Array<any>
   onChange: (event: any) => void
 }
 
-const RatingEscale: React.FC<RatingEscaleProps> = ({
+const OptionsList: React.FC<OptionsProps> = ({
   options,
   onChange
-}: RatingEscaleProps) => {
+}: OptionsProps) => {
   return (
     <div className={styles.boxRating}>
-      <div className={styles.ratingEscale}>
+      <div className={styles.optionsList}>
         {options.map((item, index) => (
           <React.Fragment key={index}>
             <input
               type="radio"
-              name="enps"
+              name="options"
               id={(item.id as unknown) as string}
               value={item.note}
               required
               onClick={onChange}
             />
             <label htmlFor={(item.id as unknown) as string} key={item.id}>
-              {item.value}
+              {!!item.value && (
+                <Typography variant="caption">{item.value}</Typography>
+              )}
             </label>
           </React.Fragment>
         ))}
-      </div>
-      <div className={styles.descriptions}>
-        <span className="initial">{options[0].description}</span>
-        <span className="final">{options[10].description}</span>
       </div>
     </div>
   )
 }
 
-export default RatingEscale
+export default OptionsList

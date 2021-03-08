@@ -1,5 +1,4 @@
 import { Typography } from '@material-ui/core'
-import Image from 'next/image'
 import React from 'react'
 import styles from './Imageslist.module.css'
 
@@ -12,7 +11,6 @@ const ImagesList: React.FC<ImagesListProps> = ({
   options,
   onChange
 }: ImagesListProps) => {
-  console.log(options)
   return (
     <div className={styles.boxRating}>
       <div className={styles.ImagesList}>
@@ -22,7 +20,7 @@ const ImagesList: React.FC<ImagesListProps> = ({
               type="radio"
               name="images"
               id={(item.id as unknown) as string}
-              value={item.value}
+              value={item.note}
               required
               onClick={onChange}
             />
