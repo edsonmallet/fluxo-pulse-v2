@@ -5,9 +5,10 @@ import RatingStar from '@components/QuestionsForms/RatingStar'
 
 interface StarsProps {
   question: ResponseQuestion
+  onSelect: (event: any) => void
 }
 
-const Stars: React.FC<StarsProps> = ({ question }: StarsProps) => {
+const Stars: React.FC<StarsProps> = ({ question, onSelect }: StarsProps) => {
   const classes = useStyles()
 
   return (
@@ -17,7 +18,7 @@ const Stars: React.FC<StarsProps> = ({ question }: StarsProps) => {
       </Typography>
       <RatingStar
         options={question.answers.reverse()}
-        onChange={console.log}
+        onSelect={onSelect}
       ></RatingStar>
     </div>
   )

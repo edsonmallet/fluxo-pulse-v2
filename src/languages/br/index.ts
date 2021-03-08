@@ -38,5 +38,7 @@ export const StringsPortuguese = {
   loading: 'Verificando Código ...',
   loadingQuestion: 'Buscando pergunta ...',
   valid: 'Código Valido',
-  invalid: 'Código inválido'
+  invalid: 'Código inválido',
+  buttonConfirmSendPulse: 'Confirmar',
+  buttonSkipPulse: 'Pular'
 }

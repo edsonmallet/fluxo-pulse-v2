@@ -4,12 +4,12 @@ import styles from './Options.module.css'
 
 interface OptionsProps {
   options: Array<any>
-  onChange: (event: any) => void
+  onSelect: (event: any) => void
 }
 
 const OptionsList: React.FC<OptionsProps> = ({
   options,
-  onChange
+  onSelect
 }: OptionsProps) => {
   return (
     <div className={styles.boxRating}>
@@ -22,7 +22,7 @@ const OptionsList: React.FC<OptionsProps> = ({
               id={(item.id as unknown) as string}
               value={item.note}
               required
-              onClick={onChange}
+              onClick={onSelect}
             />
             <label htmlFor={(item.id as unknown) as string} key={item.id}>
               {!!item.value && (

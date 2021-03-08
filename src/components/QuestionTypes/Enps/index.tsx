@@ -5,9 +5,10 @@ import { ResponseQuestion } from '@services/pulse'
 
 interface EnpsProps {
   question: ResponseQuestion
+  onSelect: (event: any) => void
 }
 
-const Enps: React.FC<EnpsProps> = ({ question }: EnpsProps) => {
+const Enps: React.FC<EnpsProps> = ({ question, onSelect }: EnpsProps) => {
   const classes = useStyles()
 
   return (
@@ -17,7 +18,7 @@ const Enps: React.FC<EnpsProps> = ({ question }: EnpsProps) => {
       </Typography>
       <RatingEscale
         options={question.answers.reverse()}
-        onChange={console.log}
+        onSelect={onSelect}
       ></RatingEscale>
     </div>
   )

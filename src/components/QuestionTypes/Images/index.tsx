@@ -7,7 +7,7 @@ interface ImagesProps {
   question: ResponseQuestion
 }
 
-const Images: React.FC<ImagesProps> = ({ question }: ImagesProps) => {
+const Images: React.FC<ImagesProps> = ({ question, onSelect }: ImagesProps) => {
   const classes = useStyles()
 
   return (
@@ -15,10 +15,7 @@ const Images: React.FC<ImagesProps> = ({ question }: ImagesProps) => {
       <Typography className={classes.questionTitle}>
         {question.question}
       </Typography>
-      <ImagesList
-        options={question.answers}
-        onChange={console.log}
-      ></ImagesList>
+      <ImagesList options={question.answers} onSelect={onSelect}></ImagesList>
     </div>
   )
 }

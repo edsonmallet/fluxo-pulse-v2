@@ -7,7 +7,10 @@ interface OptionsProps {
   question: ResponseQuestion
 }
 
-const Options: React.FC<OptionsProps> = ({ question }: OptionsProps) => {
+const Options: React.FC<OptionsProps> = ({
+  question,
+  onSelect
+}: OptionsProps) => {
   const classes = useStyles()
 
   return (
@@ -15,10 +18,7 @@ const Options: React.FC<OptionsProps> = ({ question }: OptionsProps) => {
       <Typography className={classes.questionTitle}>
         {question.question}
       </Typography>
-      <OptionsList
-        options={question.answers}
-        onChange={console.log}
-      ></OptionsList>
+      <OptionsList options={question.answers} onSelect={onSelect}></OptionsList>
     </div>
   )
 }
