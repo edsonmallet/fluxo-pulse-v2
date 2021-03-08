@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { getNextQuestion, ResponseQuestion } from '@services/pulse'
 import { LoadingQuestion } from '@components/LoadingQuestion'
 import { Check } from '@material-ui/icons'
-import Stars from '@components/QuestionTypes/Stars'
+import Images from '@components/QuestionTypes/Images'
 
 const Questions: NextPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState<ResponseQuestion>()
@@ -31,7 +31,7 @@ const Questions: NextPage = () => {
           <LoadingQuestion label={text('loadingQuestion')} />
         ) : (
           <div className={classes.container}>
-            <Stars question={currentQuestion} />
+            <Images question={currentQuestion} />
 
             <div className={classes.actions}>
               <Button

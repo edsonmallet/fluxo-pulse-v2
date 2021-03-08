@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   containerMain: {
-    maxWidth: 800
+    maxWidth: 1000
   },
   footer: {
     width: '100%',

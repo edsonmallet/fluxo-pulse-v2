@@ -25,8 +25,9 @@
 }
 
 .ratingStar > label {
-  color: #ddd;
+  color: #eee;
   float: right;
+  transition: all 0.5s;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/

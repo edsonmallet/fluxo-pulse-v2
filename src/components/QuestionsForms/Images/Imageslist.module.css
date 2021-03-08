@@ -1,0 +1,131 @@
+.boxRating {
+  width: 100%;
+  box-sizing: border-box;
+}
+.ImagesList {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  padding: 10px 10px 10px 10px;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow-x: auto;
+}
+
+.ImagesList::-webkit-scrollbar-track {
+  background-color: #ccc;
+}
+
+.ImagesList::-webkit-scrollbar {
+  height: 3px;
+  background-color: #04d47e;
+}
+
+.ImagesList::-webkit-scrollbar-thumb {
+  background-color: #04d47e;
+  border: 1px solid #04d47e;
+}
+
+.ImagesList input {
+  display: none;
+}
+
+.ImagesList label {
+  opacity: 0.5;
+  float: right;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200;
+  margin: 10px;
+  border: none;
+  padding: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ImagesList label img {
+  width: 150px;
+}
+.ImagesList label span {
+  text-align: center;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.ImagesList > input:checked + label {
+  opacity: 1;
+  border: 2px solid #04d47e;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+.ImagesList input:not(:checked) + label:hover {
+  opacity: 1;
+  border: 2px solid #04d47e;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .ImagesList > label:before {
+    font-size: 3em;
+  }
+  .ImagesList {
+    max-width: 300px;
+  }
+  .ImagesList label img {
+    width: 110px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 400px) {
+  .ImagesList > label:before {
+    font-size: 3em;
+  }
+  .ImagesList {
+    max-width: 400px;
+  }
+  .ImagesList label img {
+    width: 140px;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .ImagesList > label:before {
+    font-size: 4em;
+  }
+  .ImagesList {
+    max-width: 768px;
+  }
+  .ImagesList label img {
+    width: 130px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .ImagesList > label:before {
+    font-size: 5em;
+  }
+  .ImagesList {
+    max-width: 972px;
+  }
+  .ImagesList label img {
+    width: 130px;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .ImagesList > label:before {
+    font-size: 6em;
+  }
+  .ImagesList {
+    max-width: 1180px;
+  }
+  .ImagesList label img {
+    width: 160px;
+  }
+}
