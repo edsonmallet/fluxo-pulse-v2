@@ -5,9 +5,9 @@ import { useRouter } from 'next/router'
 import { Button, LinearProgress, makeStyles } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import { getNextQuestion, ResponseQuestion } from '@services/pulse'
-import Enps from '@components/QuestionTypes/Enps'
 import { LoadingQuestion } from '@components/LoadingQuestion'
 import { Check } from '@material-ui/icons'
+import Stars from '@components/QuestionTypes/Stars'
 
 const Questions: NextPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState<ResponseQuestion>()
@@ -31,7 +31,7 @@ const Questions: NextPage = () => {
           <LoadingQuestion label={text('loadingQuestion')} />
         ) : (
           <div className={classes.container}>
-            <Enps question={currentQuestion} />
+            <Stars question={currentQuestion} />
 
             <div className={classes.actions}>
               <Button
