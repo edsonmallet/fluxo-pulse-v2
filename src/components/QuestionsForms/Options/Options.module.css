@@ -13,17 +13,17 @@
 }
 
 .optionsList::-webkit-scrollbar-track {
-  background-color: #ccc;
+  background-color: #eee;
 }
 
 .optionsList::-webkit-scrollbar {
   height: 3px;
-  background-color: #04d47e;
+  background-color: #ccc;
 }
 
 .optionsList::-webkit-scrollbar-thumb {
-  background-color: #04d47e;
-  border: 1px solid #04d47e;
+  background-color: #ccc;
+  border: 1px solid #ccc;
 }
 
 .optionsList input {

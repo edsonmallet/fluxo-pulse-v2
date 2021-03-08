@@ -6,8 +6,11 @@ import { makeStyles } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import { getNextQuestion, ResponseQuestion } from '@services/pulse'
 import { LoadingQuestion } from '@components/LoadingQuestion'
-import Options from '@components/QuestionTypes/Options'
 import { QuestionActions } from '@components/QuestionActions'
+import Images from '@components/QuestionTypes/Images'
+import Enps from '@components/QuestionTypes/Enps'
+import Stars from '@components/QuestionTypes/Stars'
+import Options from '@components/QuestionTypes/Options'
 
 const Questions: NextPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState<ResponseQuestion>()

@@ -16,8 +16,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '10px 0',
-    width: '100%',
-    boxShadow: personalStyles.colors.boxShadow
+    width: '100%'
   },
   main: {
     padding: '10px 20px',

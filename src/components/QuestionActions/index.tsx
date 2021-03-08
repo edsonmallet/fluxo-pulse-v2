@@ -1,7 +1,7 @@
 import useTranslation from '@contexts/Intl'
 import useSettings from '@contexts/Settings'
 import { Button, CircularProgress, LinearProgress } from '@material-ui/core'
-import { Check } from '@material-ui/icons'
+import { AddCommentOutlined, Check } from '@material-ui/icons'
 import React from 'react'
 import useStyles from './styles'
 
@@ -51,6 +51,14 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
           onClick={onSkip}
         >
           {text('buttonSkipPulse')}
+        </Button>
+        <Button
+          variant="text"
+          size="small"
+          startIcon={<AddCommentOutlined />}
+          className={classes.buttonFeedback}
+        >
+          enviar Feedback ?
         </Button>
       </div>
     )

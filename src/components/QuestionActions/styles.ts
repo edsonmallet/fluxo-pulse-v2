@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 10,
     minHeight: 150
   },
   buttonSendPulse: {
@@ -15,16 +15,20 @@ const useStyles = makeStyles(theme => ({
     fontSize: 16,
     fontWeight: 700,
     [theme.breakpoints.down('sm')]: {
-      fontSize: 12
+      fontSize: 12,
+      padding: '18px 40px'
     }
+  },
+  buttonFeedback: {
+    marginTop: 10
   },
   progressBar: {
     width: 180,
-    height: 40,
-    marginTop: 10,
+    height: 30,
+    marginTop: 5,
     textAlign: 'center',
     fontWeight: 700,
-    fontSize: 12
+    fontSize: 10
   }
 }))
 

@@ -5,6 +5,7 @@ import OptionsList from '@components/QuestionsForms/Options'
 
 interface OptionsProps {
   question: ResponseQuestion
+  onSelect: (event: any) => void
 }
 
 const Options: React.FC<OptionsProps> = ({

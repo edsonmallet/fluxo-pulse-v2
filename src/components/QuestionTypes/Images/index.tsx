@@ -5,6 +5,7 @@ import ImagesList from '@components/QuestionsForms/Images'
 
 interface ImagesProps {
   question: ResponseQuestion
+  onSelect: (event: any) => void
 }
 
 const Images: React.FC<ImagesProps> = ({ question, onSelect }: ImagesProps) => {
