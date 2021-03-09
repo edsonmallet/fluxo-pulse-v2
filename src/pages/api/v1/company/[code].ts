@@ -18,8 +18,6 @@ const handler: NextApiHandler = async (
 
     const company = await query(queryGetCompany, code)
     const groups = await query(queryGetGroupsByCompany, company.id)
-
-    console.log(groups)
   } catch (e) {
     res.status(500).json({ message: e.message })
   }

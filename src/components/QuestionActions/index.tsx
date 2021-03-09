@@ -18,6 +18,8 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
     const { text } = useTranslation()
     const { settings } = useSettings()
 
+    const normalise = (current: number, max: number) => (current * 100) / max
+
     return (
       <div className={classes.container}>
         {loading ? (
@@ -43,7 +45,10 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
           <LinearProgress
             variant="determinate"
             color="primary"
-            value={settings.numberResponseDay}
+            value={normalise(
+              settings.numberResponseDay,
+              settings.maxResponseDay
+            )}
           />
         </div>
         <Button

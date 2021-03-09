@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 interface ISettings {
   tokenPulse?: string
   numberResponseDay?: number
+  maxResponseDay?: number
   currentDate?: Date
   logo?: string
   code?: string
@@ -15,7 +16,8 @@ interface SettingContextData {
 
 const defaultSettings: ISettings = {
   tokenPulse: '',
-  numberResponseDay: 0,
+  numberResponseDay: 1,
+  maxResponseDay: 10,
   currentDate: new Date(),
   logo: '',
   code: ''

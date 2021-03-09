@@ -11,24 +11,38 @@ import Images from '@components/QuestionTypes/Images'
 import Enps from '@components/QuestionTypes/Enps'
 import Stars from '@components/QuestionTypes/Stars'
 import Options from '@components/QuestionTypes/Options'
+import useSettings from '@contexts/Settings'
 
 const Questions: NextPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState<ResponseQuestion>()
   const [responseSelected, setResponseSelected] = useState<string>(null)
+  const [loadingVote, setLoadingVote] = useState<boolean>(false)
   const { text } = useTranslation()
+  const { settings, saveSettings } = useSettings()
   const router = useRouter()
   const classes = useStyles()
 
   const getQuestion = async () => {
     setCurrentQuestion(null)
     const question = await getNextQuestion()
-    console.log(question)
     setResponseSelected(null)
     setCurrentQuestion(question)
   }
 
   const handleChange = (value: string) => {
     setResponseSelected(value)
+  }
+
+  const handleVote = () => {
+    setLoadingVote(true)
+    saveSettings({
+      ...settings,
+      numberResponseDay: settings.numberResponseDay + 1
+    })
+    setTimeout(() => {
+      setLoadingVote(false)
+      getQuestion()
+    }, 3000)
   }
 
   useEffect(() => {
@@ -71,8 +85,8 @@ const Questions: NextPage = () => {
 
             <QuestionActions
               sendDisabled={!!responseSelected}
-              loading={false}
-              onConfirm={() => console.log('Confirm')}
+              loading={loadingVote}
+              onConfirm={() => handleVote()}
               onSkip={() => getQuestion()}
             />
           </div>
