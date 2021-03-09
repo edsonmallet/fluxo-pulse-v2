@@ -5,18 +5,19 @@ import ImagesList from '@components/QuestionsForms/Images'
 
 interface ImagesProps {
   question: ResponseQuestion
-  onSelect: (event: any) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Images: React.FC<ImagesProps> = ({ question, onSelect }: ImagesProps) => {
+const Images: React.FC<ImagesProps> = ({ question, onChange }: ImagesProps) => {
   const classes = useStyles()
+  const options = question.answers.slice()
 
   return (
     <div className={classes.container}>
       <Typography className={classes.questionTitle}>
         {question.question}
       </Typography>
-      <ImagesList options={question.answers} onSelect={onSelect}></ImagesList>
+      <ImagesList options={options} onChange={onChange}></ImagesList>
     </div>
   )
 }

@@ -5,21 +5,19 @@ import RatingStar from '@components/QuestionsForms/RatingStar'
 
 interface StarsProps {
   question: ResponseQuestion
-  onSelect: (event: any) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Stars: React.FC<StarsProps> = ({ question, onSelect }: StarsProps) => {
+const Stars: React.FC<StarsProps> = ({ question, onChange }: StarsProps) => {
   const classes = useStyles()
+  const options = question.answers.slice().reverse()
 
   return (
     <div className={classes.container}>
       <Typography className={classes.questionTitle}>
         {question.question}
       </Typography>
-      <RatingStar
-        options={question.answers.reverse()}
-        onSelect={onSelect}
-      ></RatingStar>
+      <RatingStar options={options} onChange={onChange}></RatingStar>
     </div>
   )
 }

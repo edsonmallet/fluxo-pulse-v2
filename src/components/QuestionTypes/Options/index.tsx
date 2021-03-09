@@ -5,21 +5,22 @@ import OptionsList from '@components/QuestionsForms/Options'
 
 interface OptionsProps {
   question: ResponseQuestion
-  onSelect: (event: any) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const Options: React.FC<OptionsProps> = ({
   question,
-  onSelect
+  onChange
 }: OptionsProps) => {
   const classes = useStyles()
+  const options = question.answers.slice()
 
   return (
     <div className={classes.container}>
       <Typography className={classes.questionTitle}>
         {question.question}
       </Typography>
-      <OptionsList options={question.answers} onSelect={onSelect}></OptionsList>
+      <OptionsList options={options} onChange={onChange}></OptionsList>
     </div>
   )
 }

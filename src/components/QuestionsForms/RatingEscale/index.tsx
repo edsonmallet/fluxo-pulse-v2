@@ -3,12 +3,12 @@ import styles from './RatingEscale.module.css'
 
 interface RatingEscaleProps {
   options: Array<any>
-  onSelect: (event: any) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const RatingEscale: React.FC<RatingEscaleProps> = ({
   options,
-  onSelect
+  onChange
 }: RatingEscaleProps) => {
   return (
     <div className={styles.boxRating}>
@@ -21,7 +21,7 @@ const RatingEscale: React.FC<RatingEscaleProps> = ({
               id={(item.id as unknown) as string}
               value={item.note}
               required
-              onClick={onSelect}
+              onChange={onChange}
             />
             <label htmlFor={(item.id as unknown) as string} key={item.id}>
               {item.value}

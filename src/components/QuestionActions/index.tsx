@@ -6,13 +6,14 @@ import React from 'react'
 import useStyles from './styles'
 
 interface QuestionActionsProps {
+  sendDisabled: boolean
   loading?: boolean
   onConfirm: (event: any) => void
   onSkip: (event: any) => void
 }
 
 const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
-  ({ onConfirm, onSkip, loading }: QuestionActionsProps) => {
+  ({ onConfirm, onSkip, loading, sendDisabled }: QuestionActionsProps) => {
     const classes = useStyles()
     const { text } = useTranslation()
     const { settings } = useSettings()
@@ -29,6 +30,7 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
             endIcon={<Check />}
             className={classes.buttonSendPulse}
             onClick={onConfirm}
+            disabled={!sendDisabled}
           >
             {text('buttonConfirmSendPulse')}
           </Button>

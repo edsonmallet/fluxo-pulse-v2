@@ -1,6 +1,7 @@
 .boxRating {
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 .optionsList {
   width: 100%;
@@ -12,6 +13,26 @@
   overflow-x: auto;
 }
 
+.optionsList:before {
+  font-family: 'Font Awesome 5 free';
+  font-weight: 900;
+  content: '\f053';
+  position: absolute;
+  font-size: 24px;
+  top: 40%;
+  left: -5px;
+  color: #ccc;
+}
+.optionsList:after {
+  font-family: 'Font Awesome 5 free';
+  font-weight: 900;
+  content: '\f054';
+  position: absolute;
+  font-size: 24px;
+  top: 40%;
+  right: -5px;
+  color: #ccc;
+}
 .optionsList::-webkit-scrollbar-track {
   background-color: #eee;
 }
@@ -55,9 +76,10 @@
   color: #ccc;
 }
 
-.optionsList label span {
+.optionsList label p {
   text-align: center;
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 0.9rem !important;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -123,6 +145,12 @@
   .optionsList label img {
     width: 130px;
   }
+  .optionsList:before {
+    content: '';
+  }
+  .optionsList:after {
+    content: '';
+  }
 }
 
 /* Large Devices, Wide Screens */
@@ -135,5 +163,11 @@
   }
   .optionsList label img {
     width: 160px;
+  }
+  .optionsList:before {
+    content: '';
+  }
+  .optionsList:after {
+    content: '';
   }
 }

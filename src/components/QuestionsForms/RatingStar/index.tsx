@@ -3,12 +3,12 @@ import styles from './RatingStar.module.css'
 
 interface RatingStarProps {
   options: Array<any>
-  onSelect: (event: any) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const RatingStar: React.FC<RatingStarProps> = ({
   options,
-  onSelect
+  onChange
 }: RatingStarProps) => {
   return (
     <div className={styles.boxRating}>
@@ -21,7 +21,7 @@ const RatingStar: React.FC<RatingStarProps> = ({
               id={(item.id as unknown) as string}
               value={item.note}
               required
-              onClick={onSelect}
+              onChange={onChange}
             />
             <label htmlFor={(item.id as unknown) as string} key={item.id} />
           </React.Fragment>

@@ -6,17 +6,22 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
-    minHeight: 150
+    marginTop: 50,
+    minHeight: 150,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 10
+    }
   },
   buttonSendPulse: {
     padding: '25px 40px',
     marginBottom: 10,
     fontSize: 16,
     fontWeight: 700,
+    marginTop: 20,
     [theme.breakpoints.down('sm')]: {
       fontSize: 12,
-      padding: '18px 40px'
+      padding: '18px 40px',
+      marginTop: 10
     }
   },
   buttonFeedback: {

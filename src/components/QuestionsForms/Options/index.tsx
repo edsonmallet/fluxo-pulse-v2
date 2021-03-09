@@ -4,12 +4,12 @@ import styles from './Options.module.css'
 
 interface OptionsProps {
   options: Array<any>
-  onSelect: (event: any) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const OptionsList: React.FC<OptionsProps> = ({
   options,
-  onSelect
+  onChange
 }: OptionsProps) => {
   return (
     <div className={styles.boxRating}>
@@ -22,12 +22,10 @@ const OptionsList: React.FC<OptionsProps> = ({
               id={(item.id as unknown) as string}
               value={item.note}
               required
-              onClick={onSelect}
+              onChange={onChange}
             />
             <label htmlFor={(item.id as unknown) as string} key={item.id}>
-              {!!item.value && (
-                <Typography variant="caption">{item.value}</Typography>
-              )}
+              {!!item.value && <Typography>{item.value}</Typography>}
             </label>
           </React.Fragment>
         ))}

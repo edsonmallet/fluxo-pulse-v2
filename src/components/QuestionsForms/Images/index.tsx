@@ -4,12 +4,12 @@ import styles from './Imageslist.module.css'
 
 interface ImagesListProps {
   options: Array<any>
-  onSelect: (event: any) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const ImagesList: React.FC<ImagesListProps> = ({
   options,
-  onSelect
+  onChange
 }: ImagesListProps) => {
   return (
     <div className={styles.boxRating}>
@@ -22,12 +22,12 @@ const ImagesList: React.FC<ImagesListProps> = ({
               id={(item.id as unknown) as string}
               value={item.note}
               required
-              onClick={onSelect}
+              onChange={onChange}
             />
             <label htmlFor={(item.id as unknown) as string} key={item.id}>
               <img src={item.value} alt={item.description} />
               {!!item.description && (
-                <Typography variant="caption">{item.description}</Typography>
+                <Typography>{item.description || '&nbsp;'}</Typography>
               )}
             </label>
           </React.Fragment>
