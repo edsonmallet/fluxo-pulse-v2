@@ -18,7 +18,7 @@
   position: absolute;
   font-size: 24px;
   top: 40%;
-  left: -5px;
+  left: -18px;
   color: #ccc;
 }
 .ImagesList:after {
@@ -28,7 +28,7 @@
   position: absolute;
   font-size: 24px;
   top: 40%;
-  right: -5px;
+  right: -18px;
   color: #ccc;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .ImagesList label {
-  opacity: 0.7;
+  opacity: 0.6;
   float: right;
   transition: all 0.2s;
   display: flex;
@@ -93,7 +93,33 @@
     font-size: 3em;
   }
   .ImagesList {
-    max-width: 300px;
+    max-width: 280px;
+  }
+  .ImagesList label img {
+    width: 110px;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 375px) {
+  .ImagesList > label:before {
+    font-size: 3em;
+  }
+  .ImagesList {
+    max-width: 330px;
+  }
+  .ImagesList label img {
+    width: 110px;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 414px) {
+  .ImagesList > label:before {
+    font-size: 3em;
+  }
+  .ImagesList {
+    max-width: 370px;
   }
   .ImagesList label img {
     width: 110px;

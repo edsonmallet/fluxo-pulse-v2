@@ -59,13 +59,13 @@ const Questions: NextPage = () => {
             {currentQuestion.type_answer === '5estrelas' && (
               <Stars
                 question={currentQuestion}
-                onChange={event => setResponseSelected(event.target.value)}
+                onChange={event => handleChange(event.target.value)}
               />
             )}
             {currentQuestion.type_answer === '5opcoes' && (
               <Options
                 question={currentQuestion}
-                onChange={event => setResponseSelected(event.target.value)}
+                onChange={event => handleChange(event.target.value)}
               />
             )}
 
