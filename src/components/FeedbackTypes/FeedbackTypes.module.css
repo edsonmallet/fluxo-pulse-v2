@@ -1,0 +1,100 @@
+.boxTypeFeedback {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.boxTypeFeedback small {
+  margin-bottom: 5px;
+}
+.typeFeedback {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.typeFeedback input[type='radio'] {
+  opacity: 0;
+  position: fixed;
+}
+
+.typeFeedback label {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  border: 1px solid;
+  margin-right: 10px;
+  padding: 10px;
+}
+.typeFeedback label:last-child {
+  margin-right: 0px;
+}
+.typeFeedback label:first-child {
+  margin-right: 0px;
+}
+.typeFeedback label span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.typeFeedback label i {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+.praise {
+  border-color: #04d47e;
+  color: #04d47e;
+}
+.criticism {
+  border-color: #f03434;
+  color: #f03434;
+}
+.idea {
+  border-color: #f9bf3b;
+  color: #f9bf3b;
+}
+.typeFeedback input[type='radio']:checked + label,
+.typeFeedback input[type='radio']:checked + label i {
+  color: #fff;
+}
+.typeFeedback input[type='radio']:checked + .praise {
+  background-color: #04d47e;
+}
+.typeFeedback input[type='radio']:checked + .criticism {
+  background-color: #f03434;
+}
+.typeFeedback input[type='radio']:checked + .idea {
+  background-color: #f9bf3b;
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .boxTypeFeedback {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .typeFeedback {
+    justify-content: center;
+  }
+  .typeFeedback label {
+    font-size: 1em;
+    padding: 10px 60px;
+  }
+  .typeFeedback label span {
+    flex-direction: row;
+  }
+  .typeFeedback label i {
+    margin-right: 10px;
+  }
+}

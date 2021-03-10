@@ -2,6 +2,7 @@ import useTranslation from '@contexts/Intl'
 import useSettings from '@contexts/Settings'
 import { Button, CircularProgress, LinearProgress } from '@material-ui/core'
 import { AddCommentOutlined, Check } from '@material-ui/icons'
+import { useRouter } from 'next/router'
 import React from 'react'
 import useStyles from './styles'
 
@@ -17,6 +18,7 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
     const classes = useStyles()
     const { text } = useTranslation()
     const { settings } = useSettings()
+    const router = useRouter()
 
     const normalise = (current: number, max: number) => (current * 100) / max
 
@@ -64,6 +66,7 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
           size="small"
           startIcon={<AddCommentOutlined />}
           className={classes.buttonFeedback}
+          onClick={() => router.push('/feedback')}
         >
           enviar Feedback ?
         </Button>

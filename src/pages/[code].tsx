@@ -123,7 +123,7 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
 
   return (
     <>
-      <LayoutPage companyLogoSrc={company.logo}>
+      <LayoutPage>
         <div className={classes.titles}>
           <Image
             src="/logos/fluxo_icon.svg"

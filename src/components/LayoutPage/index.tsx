@@ -3,17 +3,15 @@ import Image from 'next/image'
 import Head from 'next/head'
 import useStyles from './styles'
 import { Typography } from '@material-ui/core'
+import useSettings from '@contexts/Settings'
 
 interface LayoutProps {
   children: ReactNode
-  companyLogoSrc?: string
 }
 
-const LayoutPage: React.FC<LayoutProps> = ({
-  children,
-  companyLogoSrc
-}: LayoutProps) => {
+const LayoutPage: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
   const classes = useStyles()
+  const { settings } = useSettings()
   return (
     <>
       <Head>
@@ -27,7 +25,7 @@ const LayoutPage: React.FC<LayoutProps> = ({
             height={48}
             alt="Logo"
             quality={100}
-            src={companyLogoSrc || '/logos/fluxo_logo.svg'}
+            src={settings.logo || '/logos/fluxo_logo.svg'}
             loading="eager"
             layout="fixed"
           />
