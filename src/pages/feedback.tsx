@@ -68,7 +68,6 @@ const Feedback: NextPage = () => {
             className={classes.textArea}
           />
           <Emoji />
-
           <Button
             variant="contained"
             size="large"
