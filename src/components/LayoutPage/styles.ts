@@ -8,7 +8,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: theme.palette.background.paper
   },
   header: {
     display: 'flex',
@@ -16,12 +17,12 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '10px 0',
-    width: '100%',
-    boxShadow: personalStyles.colors.boxShadow
+    width: '100%'
   },
   main: {
     padding: '10px 20px',
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -40,6 +41,9 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: personalStyles.colors.primary,
       border: `1px solid ${personalStyles.colors.primary}`
     }
+  },
+  containerMain: {
+    maxWidth: 1000
   },
   footer: {
     width: '100%',

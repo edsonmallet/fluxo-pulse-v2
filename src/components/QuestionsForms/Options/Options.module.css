@@ -1,0 +1,173 @@
+.boxRating {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+.optionsList {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  padding: 10px 10px 10px 10px;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow-x: auto;
+}
+
+.optionsList:before {
+  font-family: 'Font Awesome 5 free';
+  font-weight: 900;
+  content: '\f053';
+  position: absolute;
+  font-size: 24px;
+  top: 40%;
+  left: -5px;
+  color: #ccc;
+}
+.optionsList:after {
+  font-family: 'Font Awesome 5 free';
+  font-weight: 900;
+  content: '\f054';
+  position: absolute;
+  font-size: 24px;
+  top: 40%;
+  right: -5px;
+  color: #ccc;
+}
+.optionsList::-webkit-scrollbar-track {
+  background-color: #eee;
+}
+
+.optionsList::-webkit-scrollbar {
+  height: 3px;
+  background-color: #ccc;
+}
+
+.optionsList::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border: 1px solid #ccc;
+}
+
+.optionsList input {
+  display: none;
+}
+
+.optionsList label {
+  opacity: 0.5;
+  float: right;
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+  min-height: 100px;
+  margin: 10px;
+  border: none;
+  padding: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.optionsList > label:before {
+  font-family: 'Font Awesome 5 free';
+  font-weight: 900;
+  content: '\f111';
+  display: inline-block;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.optionsList label p {
+  text-align: center;
+  font-weight: 900;
+  font-size: 0.9rem !important;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.optionsList > input:checked + label {
+  opacity: 1;
+  color: #04d47e;
+}
+.optionsList > input:checked + label:before {
+  color: #04d47e;
+}
+.optionsList input:not(:checked) + label:hover {
+  opacity: 1;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .optionsList > label:before {
+    font-size: 3em;
+  }
+  .optionsList {
+    max-width: 300px;
+  }
+  .optionsList label img {
+    width: 110px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 400px) {
+  .optionsList > label:before {
+    font-size: 3em;
+  }
+  .optionsList {
+    max-width: 400px;
+  }
+  .optionsList label img {
+    width: 140px;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .optionsList > label:before {
+    font-size: 4em;
+  }
+  .optionsList {
+    max-width: 768px;
+  }
+  .optionsList label img {
+    width: 130px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .optionsList > label:before {
+    font-size: 5em;
+  }
+  .optionsList {
+    max-width: 972px;
+  }
+  .optionsList label img {
+    width: 130px;
+  }
+  .optionsList:before {
+    content: '';
+  }
+  .optionsList:after {
+    content: '';
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .optionsList > label:before {
+    font-size: 6em;
+  }
+  .optionsList {
+    max-width: 1180px;
+  }
+  .optionsList label img {
+    width: 160px;
+  }
+  .optionsList:before {
+    content: '';
+  }
+  .optionsList:after {
+    content: '';
+  }
+}

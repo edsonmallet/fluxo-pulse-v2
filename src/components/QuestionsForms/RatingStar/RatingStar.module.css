@@ -1,0 +1,81 @@
+.boxRating {
+  width: 100%;
+}
+.ratingStar {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.ratingStar > input {
+  display: none;
+}
+.ratingStar > label:before {
+  font-family: 'Font Awesome 5 free';
+  font-weight: 900;
+  content: '\f005';
+  display: inline-block;
+  margin: 3px;
+  font-size: 5em;
+  cursor: pointer;
+}
+
+.ratingStar > .half:before {
+  content: '\f089';
+  position: absolute;
+}
+
+.ratingStar > label {
+  color: #eee;
+  float: right;
+  transition: all 0.5s;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.ratingStar > input:checked ~ label, /* show gold star when clicked */
+.ratingStar:not(:checked) > label:hover, /* hover current star */
+.ratingStar:not(:checked) > label:hover ~ label {
+  color: #f9bf3b;
+} /* hover previous stars in list */
+
+.ratingStar > input:checked + label:hover, /* hover current star when changing ratingStar */
+.ratingStar > input:checked ~ label:hover,
+.ratingStar > label:hover ~ input:checked ~ label, /* lighten current selection */
+.ratingStar > input:checked ~ label:hover ~ label {
+  color: #f9bf3b;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .ratingStar > label:before {
+    font-size: 3em;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  .ratingStar > label:before {
+    font-size: 3em;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .ratingStar > label:before {
+    font-size: 4em;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .ratingStar > label:before {
+    font-size: 5em;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .ratingStar > label:before {
+    font-size: 6em;
+  }
+}

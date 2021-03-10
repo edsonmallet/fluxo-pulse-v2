@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-const BASE_URL = 'api/v1'
-
 const api = axios.create({
-  baseURL: BASE_URL
+  baseURL: 'https://dev-app-fluxo-live.herokuapp.com/api/v1'
 })
 
 export default api
 
 export const endpoints = {
-  checkCompany: '/'
+  company: '/company',
+  pulse: '/pulse'
 }

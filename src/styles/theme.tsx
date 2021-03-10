@@ -10,7 +10,8 @@ const theme = createMuiTheme({
       main: personalStyles.colors.primary
     },
     secondary: {
-      main: personalStyles.colors.secondary
+      main: personalStyles.colors.secondary,
+      dark: personalStyles.colors.black
     },
     error: {
       main: personalStyles.colors.error
@@ -22,7 +23,7 @@ const theme = createMuiTheme({
       main: personalStyles.colors.info
     },
     background: {
-      default: personalStyles.colors.white,
+      default: personalStyles.colors.silver,
       paper: personalStyles.colors.white
     }
   },

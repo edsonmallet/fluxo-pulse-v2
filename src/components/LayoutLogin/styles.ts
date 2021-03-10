@@ -7,6 +7,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     width: '100vw',
     height: '100vh',
+    backgroundColor: theme.palette.background.default,
     [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.primary.main
     }
