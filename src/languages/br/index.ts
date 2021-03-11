@@ -44,5 +44,8 @@ export const StringsPortuguese = {
   valid: 'Código Valido',
   invalid: 'Código inválido',
   buttonConfirmSendPulse: 'Confirmar',
-  buttonSkipPulse: 'Pular'
+  buttonSkipPulse: 'Pular',
+  feedbackTypePraise: 'Elogio',
+  feedbackTypeCriticism: 'Crítica',
+  feedbackTypeIdea: 'Ideia'
 }

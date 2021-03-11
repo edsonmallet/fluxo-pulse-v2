@@ -47,20 +47,19 @@
   justify-content: center;
   align-items: center;
 }
-.typeFeedback label i {
-  font-size: 1.5em;
+.typeFeedback label svg {
   margin-bottom: 5px;
 }
 .praise {
-  border-color: #04d47e;
+  border-color: #04d47e10;
   color: #04d47e;
 }
 .criticism {
-  border-color: #f03434;
+  border-color: #f0343410;
   color: #f03434;
 }
 .idea {
-  border-color: #f9bf3b;
+  border-color: #f9bf3b10;
   color: #f9bf3b;
 }
 .typeFeedback input[type='radio']:checked + label,
@@ -94,7 +93,8 @@
   .typeFeedback label span {
     flex-direction: row;
   }
-  .typeFeedback label i {
+  .typeFeedback label svg {
     margin-right: 10px;
+    margin-bottom: 0;
   }
 }

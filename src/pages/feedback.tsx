@@ -13,6 +13,7 @@ import {
 import { AddCommentOutlined } from '@material-ui/icons'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const useStyles = makeStyles(theme => ({
@@ -39,9 +40,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Feedback: NextPage = () => {
+  const CHARACTER_LIMIT = 300
   const classes = useStyles()
   const { text } = useTranslation()
-  const [anonymous, setAnonymous] = useState<boolean>(true)
+  const [feedback, setFeedback] = useState<string>('')
+  const router = useRouter()
+
   return (
     <>
       <LayoutPage>
@@ -66,6 +70,12 @@ const Feedback: NextPage = () => {
             rows={4}
             variant="outlined"
             className={classes.textArea}
+            inputProps={{
+              maxlength: CHARACTER_LIMIT
+            }}
+            value={feedback}
+            onChange={event => setFeedback(event.target.value)}
+            helperText={`${feedback.length}/${CHARACTER_LIMIT}`}
           />
           <Emoji />
           <Button
@@ -77,6 +87,14 @@ const Feedback: NextPage = () => {
             className={classes.button}
           >
             {text('buttonSendFeedback')}
+          </Button>
+
+          <Button
+            variant="text"
+            size="small"
+            onClick={() => router.push('/questions')}
+          >
+            Responder mais
           </Button>
         </div>
       </LayoutPage>
