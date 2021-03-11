@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   buttonSendPulse: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: '25px 40px',
     marginBottom: 10,
     fontSize: 16,
