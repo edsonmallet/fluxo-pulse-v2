@@ -48,7 +48,7 @@ const Questions: NextPage = () => {
   const handleVote = async () => {
     setLoadingVote(true)
 
-    if (settings.numberResponseDay === settings.maxResponseDay) {
+    if (settings.numberResponseDay === 10) {
       router.push('/decision')
     }
 
@@ -77,11 +77,10 @@ const Questions: NextPage = () => {
 
   useEffect(() => {
     const settingsInital = JSON.parse(window.localStorage.getItem('settings'))
-    if (!settingsInital.tokenPulse) {
+    if (!settingsInital || !settingsInital.tokenPulse) {
       clearSettings()
       router.push('/')
-    }
-    if (settingsInital.numberResponseDay > 20) {
+    } else if (settingsInital.numberResponseDay > 20) {
       router.push('/feedback')
     } else if (settings.numberResponseDay >= settings.maxResponseDay) {
       router.push('/decision')

@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './Imageslist.module.css'
 
 interface ImagesListProps {
@@ -11,9 +11,19 @@ const ImagesList: React.FC<ImagesListProps> = ({
   options,
   onChange
 }: ImagesListProps) => {
+  const divRef = useRef(null)
+
+  useEffect(() => {
+    const scrollto =
+      divRef.current.getBoundingClientRect().left +
+      divRef.current.getBoundingClientRect().width / options.length
+
+    divRef.current.scrollLeft = scrollto
+  }, [])
+
   return (
     <div className={styles.boxRating}>
-      <div className={styles.ImagesList}>
+      <div className={styles.ImagesList} ref={divRef}>
         {options.map((item, index) => (
           <React.Fragment key={index}>
             <input

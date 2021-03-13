@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './Options.module.css'
 
 interface OptionsProps {
@@ -11,9 +11,19 @@ const OptionsList: React.FC<OptionsProps> = ({
   options,
   onChange
 }: OptionsProps) => {
+  const divRef = useRef(null)
+
+  useEffect(() => {
+    const scrollto =
+      divRef.current.getBoundingClientRect().left +
+      divRef.current.getBoundingClientRect().width / 5
+
+    divRef.current.scrollLeft = scrollto
+  }, [])
+
   return (
     <div className={styles.boxRating}>
-      <div className={styles.optionsList}>
+      <div className={styles.optionsList} ref={divRef}>
         {options.map((item, index) => (
           <React.Fragment key={index}>
             <input

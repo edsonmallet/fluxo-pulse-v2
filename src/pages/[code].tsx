@@ -17,6 +17,7 @@ import { SelectField } from '@components/Forms/SelectField'
 import { SelectGroup } from '@components/Forms/SelectGroup'
 import useSettings from '@contexts/Settings'
 import { createUser } from '@services/pulse'
+import { formatDateBr } from '@utils/convertDates'
 
 interface HomeProps {
   code: string
@@ -95,7 +96,7 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
       }
       saveSettings({
         tokenPulse: newUser.digital,
-        currentDate: new Date(),
+        currentDate: formatDateBr(),
         numberResponseDay: 0,
         maxResponseDay: 10,
         logo: companyWithGroups.logo,
