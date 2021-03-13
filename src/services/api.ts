@@ -8,5 +8,6 @@ export default api
 
 export const endpoints = {
   company: '/company',
-  pulse: '/pulse'
+  pulse: '/pulse',
+  feedback: '/feedback'
 }

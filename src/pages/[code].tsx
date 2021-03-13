@@ -85,7 +85,6 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
     setLoadingInitPulse(true)
     if (!settings.tokenPulse) {
       const newUser = await createUser(user)
-      console.log(newUser)
       if (!newUser) {
         Swal.fire({
           icon: 'error',
