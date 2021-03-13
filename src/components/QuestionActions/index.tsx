@@ -31,7 +31,6 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
             variant="contained"
             color="primary"
             size="large"
-            endIcon={<Check />}
             className={classes.buttonSendPulse}
             onClick={onConfirm}
             disabled={!sendDisabled}

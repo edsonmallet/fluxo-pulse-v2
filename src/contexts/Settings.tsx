@@ -1,10 +1,11 @@
+import { formatDateBr } from '@utils/convertDates'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 interface ISettings {
   tokenPulse?: string
   numberResponseDay?: number
   maxResponseDay?: number
-  currentDate?: Date
+  currentDate?: string
   logo?: string
   code?: string
 }
@@ -19,7 +20,7 @@ const defaultSettings: ISettings = {
   tokenPulse: '',
   numberResponseDay: 1,
   maxResponseDay: 10,
-  currentDate: new Date(),
+  currentDate: formatDateBr(),
   logo: '',
   code: ''
 }
@@ -44,12 +45,24 @@ export const SettingsProvider = ({ settings, children }) => {
     window.localStorage.setItem('settings', JSON.stringify(settings))
   }
 
+  const resetDayVotes = (storedData: string): string => {
+    const store = JSON.parse(storedData)
+    const now = formatDateBr()
+    if (new Date(now).getTime() > new Date(store.currentDate).getTime()) {
+      store.maxResponseDay = 10
+      store.numberResponseDay = 1
+    }
+
+    return JSON.stringify(store)
+  }
+
   const restoreSettings = (): ISettings => {
     let settings = null
 
     try {
-      const storedData = window.localStorage.getItem('settings')
+      let storedData = window.localStorage.getItem('settings')
       if (storedData) {
+        storedData = resetDayVotes(storedData)
         settings = JSON.parse(storedData)
       }
     } catch (err) {

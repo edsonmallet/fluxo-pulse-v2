@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.optionsList label:nth-child(2) {
+  scroll-snap-align: center;
+}
+
 .optionsList > label:before {
   font-family: 'Font Awesome 5 free';
   font-weight: 500;
