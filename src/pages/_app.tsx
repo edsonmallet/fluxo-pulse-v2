@@ -22,7 +22,7 @@ const MyApp: React.FC<AppProps> = (props: AppProps) => {
         <NextNprogress
           color={theme.palette.primary.main}
           startPosition={0.3}
-          stopDelayMs={200}
+          stopDelayMs={0}
           height={3}
           options={{ easing: 'ease', speed: 500 }}
         />

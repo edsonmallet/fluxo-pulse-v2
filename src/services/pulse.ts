@@ -44,3 +44,27 @@ export async function getNextQuestion(): Promise<ResponseQuestion> {
   const question = await api.get(`${endpoints.pulse}/getquestion`)
   return question.data
 }
+
+interface RequestVote {
+  tokenPulse: string
+  answerId: number
+  note: number
+}
+
+export interface ResponseVote {
+  status: boolean
+  message: string
+}
+
+export async function vote({
+  tokenPulse,
+  answerId,
+  note
+}: RequestVote): Promise<ResponseVote> {
+  const vote = await api.post(`${endpoints.pulse}/vote`, {
+    tokenPulse,
+    answerId,
+    note
+  })
+  return vote.data
+}

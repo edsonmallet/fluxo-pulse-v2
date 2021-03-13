@@ -2,16 +2,19 @@ import { memo, ReactNode } from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
 import useStyles from './styles'
-import { Typography } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 import useSettings from '@contexts/Settings'
+import { useRouter } from 'next/router'
 
 interface LayoutProps {
+  logo?: string
   children: ReactNode
 }
 
-const LayoutPage: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
+const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
   const classes = useStyles()
   const { settings } = useSettings()
+  const router = useRouter()
   return (
     <>
       <Head>
@@ -25,7 +28,7 @@ const LayoutPage: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
             height={48}
             alt="Logo"
             quality={100}
-            src={settings.logo || '/logos/fluxo_logo.svg'}
+            src={logo || settings.logo || '/logos/fluxo_logo.svg'}
             loading="eager"
             layout="fixed"
           />
@@ -36,13 +39,26 @@ const LayoutPage: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
         </main>
 
         <footer className={classes.footer}>
-          <Typography className={classes.footerText}>Powered By</Typography>
-          <Image
-            src="/logos/fluxo_icon.svg"
-            width={24}
-            height={24}
-            loading="eager"
-          />
+          <div className={classes.poweredby}>
+            <Typography className={classes.poweredbyText}>
+              Powered By
+            </Typography>
+            <Image
+              src="/logos/fluxo_icon.svg"
+              width={18}
+              height={18}
+              loading="eager"
+            />
+          </div>
+          <div>
+            <Button
+              variant="text"
+              size="small"
+              onClick={() => router.push('/finished')}
+            >
+              ENCERRAR
+            </Button>
+          </div>
         </footer>
       </div>
     </>

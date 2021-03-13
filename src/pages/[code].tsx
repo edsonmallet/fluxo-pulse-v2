@@ -2,11 +2,16 @@ import LayoutPage from '@components/LayoutPage'
 import useTranslation from '@contexts/Intl'
 import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/router'
-import { Button, makeStyles, Typography } from '@material-ui/core'
+import {
+  Button,
+  CircularProgress,
+  makeStyles,
+  Typography
+} from '@material-ui/core'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
-import { checkCompanyExists } from '@services/company'
+import { checkCompanyExists, ResponseCompany } from '@services/company'
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined'
 import { SelectField } from '@components/Forms/SelectField'
 import { SelectGroup } from '@components/Forms/SelectGroup'
@@ -64,21 +69,65 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
+const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
   const { text } = useTranslation()
-  const [company, setCompany] = useState<any>({})
-  const [user, setUser] = useState<INewUser>(defaultUser)
-  const { settings, saveSettings } = useSettings()
+  const { settings, saveSettings, clearSettings } = useSettings()
   const router = useRouter()
   const classes = useStyles()
+  const [user, setUser] = useState<INewUser>(defaultUser)
+  const [loadingInitPulse, setLoadingInitPulse] = useState<boolean>(false)
 
-  const getCompany = async (code: string) => {
-    if (settings.tokenPulse && settings.numberResponseDay <= 20) {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setUser({ ...user, [event.target.name]: event.target.value || 0 })
+  }
+
+  const handleInitPulse = async (): Promise<void> => {
+    setLoadingInitPulse(true)
+    if (!settings.tokenPulse) {
+      const newUser = await createUser(user)
+      if (!newUser) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ops...',
+          text: 'Erro ao criar usuário, Tente Novamente!'
+        })
+        setLoadingInitPulse(false)
+      }
+      saveSettings({
+        tokenPulse: newUser.digital,
+        currentDate: new Date(),
+        numberResponseDay: 0,
+        maxResponseDay: 10,
+        logo: companyWithGroups.logo,
+        code: companyWithGroups.code
+      })
+      setLoadingInitPulse(false)
       router.push('/questions')
     }
+  }
 
-    const ret = await checkCompanyExists({ code })
-    if (!ret) {
+  const validForm = Object.values(user).some(
+    item => item.length === 0 || item === 0
+  )
+
+  useEffect(() => {
+    const settingsInitial = JSON.parse(window.localStorage.getItem('settings'))
+
+    if (
+      settingsInitial.code.toLocaleUpperCase() !=
+      companyWithGroups.code.toLocaleUpperCase()
+    ) {
+      clearSettings()
+      router.push(`/${companyWithGroups.code}`)
+    }
+
+    if (
+      settingsInitial.tokenPulse &&
+      settingsInitial.code == companyWithGroups.code
+    ) {
+      router.push(`/questions`)
+    }
+    if (!companyWithGroups) {
       Swal.fire({
         icon: 'error',
         title: 'Ops...',
@@ -86,44 +135,11 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
         willClose: () => router.push('/')
       })
     }
-    setCompany(ret)
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setUser({ ...user, [event.target.name]: event.target.value })
-  }
-
-  const handleInitPulse = async () => {
-    if (!settings.tokenPulse && !settings.numberResponseDay) {
-      const newUser = await createUser(user)
-      if (!newUser) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Ops...',
-          text: 'Erro ao criar usuário',
-          willClose: () => router.push('/')
-        })
-      }
-      saveSettings({
-        tokenPulse: newUser.digital,
-        currentDate: new Date(),
-        numberResponseDay: 0,
-        logo: company.logo,
-        code: company.code
-      })
-    }
-    router.push('/questions')
-  }
-
-  const validForm = Object.values(user).some(item => item.length === 0)
-
-  useEffect(() => {
-    getCompany(code)
   }, [])
 
   return (
     <>
-      <LayoutPage>
+      <LayoutPage logo={companyWithGroups.logo}>
         <div className={classes.titles}>
           <Image
             src="/logos/fluxo_icon.svg"
@@ -159,26 +175,30 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
             onChange={event => handleChange(event)}
           />
 
-          {company.groups && (
+          {!!companyWithGroups.groups && (
             <SelectGroup
               label={text('subgroup')}
               id="subgroup"
-              options={company.groups}
+              options={companyWithGroups.groups}
               onChange={event => handleChange(event)}
             />
           )}
 
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            endIcon={<ArrowForwardOutlinedIcon />}
-            className={classes.button}
-            onClick={() => handleInitPulse()}
-            disabled={validForm}
-          >
-            {text('nextButton')}
-          </Button>
+          {loadingInitPulse ? (
+            <CircularProgress color="primary" />
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              endIcon={<ArrowForwardOutlinedIcon />}
+              className={classes.button}
+              onClick={() => handleInitPulse()}
+              disabled={validForm}
+            >
+              {text('nextButton')}
+            </Button>
+          )}
         </div>
 
         <div className={classes.privacy}>
@@ -193,11 +213,24 @@ const Home: NextPage<HomeProps> = ({ code }: HomeProps) => {
 }
 
 Home.getInitialProps = async ({
-  query
-}: NextPageContext): Promise<HomeProps> => {
+  query,
+  res
+}: NextPageContext): Promise<ResponseCompany> => {
   let { code } = query
   code = code as string
-  return { code }
+
+  if (!code) {
+    res.writeHead(307, { Location: '/' })
+    res.end()
+  }
+
+  const companyWithGroups = await checkCompanyExists({ code })
+
+  if (!companyWithGroups) {
+    res.writeHead(307, { Location: '/' })
+    res.end()
+  }
+  return companyWithGroups
 }
 
 export default Home

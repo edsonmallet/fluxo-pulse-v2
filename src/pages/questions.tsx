@@ -3,8 +3,13 @@ import useTranslation from '@contexts/Intl'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core'
-import { useEffect, useState } from 'react'
-import { getNextQuestion, ResponseQuestion } from '@services/pulse'
+import React, { useEffect, useState } from 'react'
+import {
+  getNextQuestion,
+  ResponseQuestion,
+  vote,
+  ResponseVote
+} from '@services/pulse'
 import { LoadingQuestion } from '@components/LoadingQuestion'
 import { QuestionActions } from '@components/QuestionActions'
 import Images from '@components/QuestionTypes/Images'
@@ -12,46 +17,84 @@ import Enps from '@components/QuestionTypes/Enps'
 import Stars from '@components/QuestionTypes/Stars'
 import Options from '@components/QuestionTypes/Options'
 import useSettings from '@contexts/Settings'
+import { Toast } from '@components/Toast'
 
 const Questions: NextPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState<ResponseQuestion>()
-  const [responseSelected, setResponseSelected] = useState<string>(null)
+  const [noteSelected, setNoteSelected] = useState<string>(null)
+  const [answerSelected, setAnswerSelected] = useState<string>(null)
   const [loadingVote, setLoadingVote] = useState<boolean>(false)
+  const [responseVote, setResponseVote] = useState<ResponseVote | null>(null)
   const { text } = useTranslation()
-  const { settings, saveSettings } = useSettings()
+  const { settings, saveSettings, clearSettings } = useSettings()
   const router = useRouter()
   const classes = useStyles()
 
   const getQuestion = async () => {
+    setResponseVote(null)
     setCurrentQuestion(null)
     const question = await getNextQuestion()
-    setResponseSelected(null)
+    setNoteSelected(null)
+    setAnswerSelected(null)
     setCurrentQuestion(question)
+    setLoadingVote(false)
   }
 
-  const handleChange = (value: string) => {
-    setResponseSelected(value)
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNoteSelected(event.target.value)
+    setAnswerSelected(event.target.id)
   }
 
-  const handleVote = () => {
+  const handleVote = async () => {
     setLoadingVote(true)
-    saveSettings({
-      ...settings,
-      numberResponseDay: settings.numberResponseDay + 1
-    })
-    setTimeout(() => {
-      setLoadingVote(false)
-      getQuestion()
-    }, 3000)
+
+    if (settings.numberResponseDay === settings.maxResponseDay) {
+      router.push('/decision')
+    }
+
+    if (settings.numberResponseDay >= 20) {
+      router.push('/feedback')
+    }
+
+    try {
+      saveSettings({
+        ...settings,
+        numberResponseDay: settings.numberResponseDay + 1
+      })
+      const resVote = await vote({
+        tokenPulse: settings.tokenPulse,
+        answerId: (answerSelected as unknown) as number,
+        note: (noteSelected as unknown) as number
+      })
+      setResponseVote(resVote)
+    } catch (error) {
+      setResponseVote(error)
+    }
+
+    getQuestion()
+    setLoadingVote(false)
   }
 
   useEffect(() => {
+    const settingsInital = JSON.parse(window.localStorage.getItem('settings'))
+    if (!settingsInital.tokenPulse) {
+      clearSettings()
+      router.push('/')
+    }
+    if (settingsInital.numberResponseDay > 20) {
+      router.push('/feedback')
+    } else if (settings.numberResponseDay >= settings.maxResponseDay) {
+      router.push('/decision')
+    }
     getQuestion()
   }, [])
 
   return (
     <>
       <LayoutPage>
+        {responseVote && !!responseVote.message && (
+          <Toast message={responseVote.message} status={responseVote.status} />
+        )}
         {!currentQuestion ? (
           <LoadingQuestion label={text('loadingQuestion')} />
         ) : (
@@ -60,31 +103,31 @@ const Questions: NextPage = () => {
               currentQuestion.type_answer === '4imagens') && (
               <Images
                 question={currentQuestion}
-                onChange={event => handleChange(event.target.value)}
+                onChange={event => handleChange(event)}
               />
             )}
             {(currentQuestion.type_answer === 'enps' ||
               currentQuestion.type_answer === '0a10') && (
               <Enps
                 question={currentQuestion}
-                onChange={event => handleChange(event.target.value)}
+                onChange={event => handleChange(event)}
               />
             )}
             {currentQuestion.type_answer === '5estrelas' && (
               <Stars
                 question={currentQuestion}
-                onChange={event => handleChange(event.target.value)}
+                onChange={event => handleChange(event)}
               />
             )}
             {currentQuestion.type_answer === '5opcoes' && (
               <Options
                 question={currentQuestion}
-                onChange={event => handleChange(event.target.value)}
+                onChange={event => handleChange(event)}
               />
             )}
 
             <QuestionActions
-              sendDisabled={!!responseSelected}
+              sendDisabled={!!noteSelected && !!answerSelected}
               loading={loadingVote}
               onConfirm={() => handleVote()}
               onSkip={() => getQuestion()}
