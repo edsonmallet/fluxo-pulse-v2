@@ -139,13 +139,13 @@ const Feedback: NextPage = () => {
               {text('buttonSendFeedback')}
             </Button>
           )}
-          {settings.numberResponseDay < settings.maxResponseDay && (
+          {settings.numberResponseDay < 20 && (
             <Button
               variant="text"
               size="small"
               onClick={() => router.push('/questions')}
             >
-              Responder mais
+              {text('finishedButtonMore')}
             </Button>
           )}
         </div>

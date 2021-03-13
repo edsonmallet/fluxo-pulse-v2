@@ -60,5 +60,5 @@ export const StringsPortuguese = {
     'Suas respostas são importantes para evolução da sua equipe, volte quando quiser para contribuir.',
   finishedRest:
     'Você ainda pode responder mais perguntas hoje ou fechar a pesquisa.',
-  finishedButtonMore: 'Responder +'
+  finishedButtonMore: 'Responder mais'
 }
