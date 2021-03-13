@@ -8,7 +8,7 @@ import {
 import useStyles from './styles'
 
 interface IGroups {
-  id: number | string
+  id?: number | string
   name: string
   departments: Array<IDepartments>
 }
@@ -33,7 +33,7 @@ const renderSelectGroup = (group: IGroups) => {
       </MenuItem>
     )
   })
-  return [<ListSubheader>{group.name}</ListSubheader>, items]
+  return [<ListSubheader disableSticky>{group.name}</ListSubheader>, items]
 }
 const SelectGroup: React.FC<SelectGroupProps> = ({
   id,

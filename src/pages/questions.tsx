@@ -18,7 +18,7 @@ const Questions: NextPage = () => {
   const [responseSelected, setResponseSelected] = useState<string>(null)
   const [loadingVote, setLoadingVote] = useState<boolean>(false)
   const { text } = useTranslation()
-  const { settings, saveSettings } = useSettings()
+  const { settings, saveSettings, clearSettings } = useSettings()
   const router = useRouter()
   const classes = useStyles()
 
@@ -46,6 +46,11 @@ const Questions: NextPage = () => {
   }
 
   useEffect(() => {
+    const settingsInital = JSON.parse(window.localStorage.getItem('settings'))
+    if (!settingsInital.tokenPulse) {
+      clearSettings()
+      router.push('/')
+    }
     getQuestion()
   }, [])
 

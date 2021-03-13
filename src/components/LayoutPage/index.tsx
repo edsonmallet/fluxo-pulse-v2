@@ -6,10 +6,11 @@ import { Typography } from '@material-ui/core'
 import useSettings from '@contexts/Settings'
 
 interface LayoutProps {
+  logo?: string
   children: ReactNode
 }
 
-const LayoutPage: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
+const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
   const classes = useStyles()
   const { settings } = useSettings()
   return (
@@ -25,7 +26,7 @@ const LayoutPage: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
             height={48}
             alt="Logo"
             quality={100}
-            src={settings.logo || '/logos/fluxo_logo.svg'}
+            src={logo || settings.logo || '/logos/fluxo_logo.svg'}
             loading="eager"
             layout="fixed"
           />
@@ -39,8 +40,8 @@ const LayoutPage: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
           <Typography className={classes.footerText}>Powered By</Typography>
           <Image
             src="/logos/fluxo_icon.svg"
-            width={24}
-            height={24}
+            width={18}
+            height={18}
             loading="eager"
           />
         </footer>

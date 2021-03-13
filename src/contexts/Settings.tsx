@@ -12,6 +12,7 @@ interface ISettings {
 interface SettingContextData {
   settings: ISettings
   saveSettings(data: ISettings): void
+  clearSettings(): void
 }
 
 const defaultSettings: ISettings = {
@@ -25,13 +26,19 @@ const defaultSettings: ISettings = {
 
 const SettingsContext = createContext<SettingContextData>({
   settings: defaultSettings,
-  saveSettings: () => {}
+  saveSettings: () => {},
+  clearSettings: () => {}
 } as SettingContextData)
 
 export const SettingsProvider = ({ settings, children }) => {
   const [currentSettings, setCurrentSettings] = useState<ISettings | null>(
-    settings || defaultSettings
+    settings || null
   )
+
+  const clearSettings = (): void => {
+    setCurrentSettings(defaultSettings)
+    window.localStorage.setItem('settings', JSON.stringify(defaultSettings))
+  }
 
   const storeSettings = (settings: ISettings): void => {
     window.localStorage.setItem('settings', JSON.stringify(settings))
@@ -67,7 +74,8 @@ export const SettingsProvider = ({ settings, children }) => {
     <SettingsContext.Provider
       value={{
         settings: currentSettings,
-        saveSettings
+        saveSettings,
+        clearSettings
       }}
     >
       {children}
