@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: '100%',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
       minWidth: 800
     }
@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     fontWeight: 900,
     fontSize: 16,
+    width: '100%',
     [theme.breakpoints.up('md')]: {
       fontSize: 24
     }

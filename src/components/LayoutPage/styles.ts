@@ -47,15 +47,19 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     width: '100%',
-    padding: '10px 0',
+    padding: '10px',
     display: 'flex',
-    fontWeight: 700,
     bottom: 0,
     height: 50,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center'
   },
-  footerText: {
+  poweredby: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  poweredbyText: {
     fontSize: 10,
     fontWeight: 600
   }

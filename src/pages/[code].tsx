@@ -98,9 +98,11 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
         tokenPulse: newUser.digital,
         currentDate: new Date(),
         numberResponseDay: 0,
+        maxResponseDay: 10,
         logo: companyWithGroups.logo,
         code: companyWithGroups.code
       })
+      setLoadingInitPulse(false)
       router.push('/questions')
     }
   }
@@ -111,6 +113,7 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
 
   useEffect(() => {
     const settingsInitial = JSON.parse(window.localStorage.getItem('settings'))
+
     if (
       settingsInitial.code.toLocaleUpperCase() !=
       companyWithGroups.code.toLocaleUpperCase()
@@ -118,9 +121,9 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
       clearSettings()
       router.push(`/${companyWithGroups.code}`)
     }
+
     if (
-      !!settingsInitial.tokenPulse &&
-      settingsInitial.numberResponseDay < 20 &&
+      settingsInitial.tokenPulse &&
       settingsInitial.code == companyWithGroups.code
     ) {
       router.push(`/questions`)

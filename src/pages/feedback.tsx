@@ -2,6 +2,7 @@ import Emoji from '@components/Emoji'
 import FeedbackTypes from '@components/FeedbackTypes'
 import LayoutPage from '@components/LayoutPage'
 import useTranslation from '@contexts/Intl'
+import useSettings from '@contexts/Settings'
 import {
   Button,
   FormControlLabel,
@@ -43,8 +44,9 @@ const Feedback: NextPage = () => {
   const CHARACTER_LIMIT = 300
   const classes = useStyles()
   const { text } = useTranslation()
-  const [feedback, setFeedback] = useState<string>('')
   const router = useRouter()
+  const { settings } = useSettings()
+  const [feedback, setFeedback] = useState<string>('')
 
   return (
     <>
@@ -56,9 +58,14 @@ const Feedback: NextPage = () => {
             height={32}
             loading="eager"
           />
-          <Typography variant="h6" component="h1">
+          <Typography variant="h5" component="h1">
             {text('feedbackTitle')}
           </Typography>
+          {settings.numberResponseDay >= 20 && (
+            <Typography variant="subtitle1">
+              {text('feedbackExcedResponse')}
+            </Typography>
+          )}
           <Typography variant="body2">{text('feedbackDescription')}</Typography>
         </div>
         <div className={classes.forms}>
@@ -88,14 +95,15 @@ const Feedback: NextPage = () => {
           >
             {text('buttonSendFeedback')}
           </Button>
-
-          <Button
-            variant="text"
-            size="small"
-            onClick={() => router.push('/questions')}
-          >
-            Responder mais
-          </Button>
+          {settings.numberResponseDay < settings.maxResponseDay && (
+            <Button
+              variant="text"
+              size="small"
+              onClick={() => router.push('/questions')}
+            >
+              Responder mais
+            </Button>
+          )}
         </div>
       </LayoutPage>
     </>

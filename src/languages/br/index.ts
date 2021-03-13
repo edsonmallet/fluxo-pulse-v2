@@ -46,6 +46,19 @@ export const StringsPortuguese = {
   buttonConfirmSendPulse: 'Confirmar',
   buttonSkipPulse: 'Pular',
   feedbackTypePraise: 'Elogio',
+  feedbackExcedResponse: 'Você já respondeu 20 perguntas hoje. Volte amanhã!',
   feedbackTypeCriticism: 'Crítica',
-  feedbackTypeIdea: 'Ideia'
+  feedbackTypeIdea: 'Ideia',
+  decisionTitle: 'O que deseja fazer?',
+  decisionDescription:
+    'Você já respondeu 10 perguntas hoje. Podemos fazer algumas ações a partir de agora',
+  decisionButtonFinish: 'Encerrar Pesquisa',
+  decisionButtonMore: 'Responder + 10',
+  decisionButtonFeedback: 'Enviar Feedback',
+  finishedTitle: 'Obrigado por participar!',
+  finishedDescription:
+    'Suas respostas são importantes para evolução da sua equipe, volte quando quiser para contribuir.',
+  finishedRest:
+    'Você ainda pode responder mais perguntas hoje ou fechar a pesquisa.',
+  finishedButtonMore: 'Responder +'
 }

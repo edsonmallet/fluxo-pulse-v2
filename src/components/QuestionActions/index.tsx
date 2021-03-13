@@ -41,9 +41,7 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
         )}
 
         <div className={classes.progressBar}>
-          {settings.numberResponseDay < 10
-            ? settings.numberResponseDay + '/10'
-            : settings.numberResponseDay + '/20'}
+          {`${settings.numberResponseDay}/${settings.maxResponseDay}`}
           <LinearProgress
             variant="determinate"
             color="primary"

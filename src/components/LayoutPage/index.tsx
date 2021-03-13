@@ -2,8 +2,9 @@ import { memo, ReactNode } from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
 import useStyles from './styles'
-import { Typography } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 import useSettings from '@contexts/Settings'
+import { useRouter } from 'next/router'
 
 interface LayoutProps {
   logo?: string
@@ -13,6 +14,7 @@ interface LayoutProps {
 const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
   const classes = useStyles()
   const { settings } = useSettings()
+  const router = useRouter()
   return (
     <>
       <Head>
@@ -37,13 +39,26 @@ const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
         </main>
 
         <footer className={classes.footer}>
-          <Typography className={classes.footerText}>Powered By</Typography>
-          <Image
-            src="/logos/fluxo_icon.svg"
-            width={18}
-            height={18}
-            loading="eager"
-          />
+          <div className={classes.poweredby}>
+            <Typography className={classes.poweredbyText}>
+              Powered By
+            </Typography>
+            <Image
+              src="/logos/fluxo_icon.svg"
+              width={18}
+              height={18}
+              loading="eager"
+            />
+          </div>
+          <div>
+            <Button
+              variant="text"
+              size="small"
+              onClick={() => router.push('/finished')}
+            >
+              ENCERRAR
+            </Button>
+          </div>
         </footer>
       </div>
     </>
