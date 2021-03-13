@@ -1,17 +1,10 @@
 import { Typography } from '@material-ui/core'
-import React, { createRef, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './Options.module.css'
 
 interface OptionsProps {
   options: Array<any>
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const useScroll = () => {
-  const elRef = useRef(null)
-  const executeScroll = () => elRef.current.scrollIntoView()
-
-  return [executeScroll, elRef]
 }
 
 const OptionsList: React.FC<OptionsProps> = ({
@@ -25,7 +18,7 @@ const OptionsList: React.FC<OptionsProps> = ({
       divRef.current.getBoundingClientRect().left +
       divRef.current.getBoundingClientRect().width / 5
 
-    divRef.current.scrollLeft = scrollto / 1.6
+    divRef.current.scrollLeft = scrollto
   }, [])
 
   return (

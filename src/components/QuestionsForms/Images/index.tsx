@@ -13,14 +13,12 @@ const ImagesList: React.FC<ImagesListProps> = ({
 }: ImagesListProps) => {
   const divRef = useRef(null)
 
-  const fatorScroll = options.length == 4 ? 1.4 : 0.7
-
   useEffect(() => {
     const scrollto =
       divRef.current.getBoundingClientRect().left +
       divRef.current.getBoundingClientRect().width / options.length
 
-    divRef.current.scrollLeft = scrollto / fatorScroll
+    divRef.current.scrollLeft = scrollto
   }, [])
 
   return (
