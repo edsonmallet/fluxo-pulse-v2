@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '25px 40px',
+    padding: '25px 40px 25px 40px',
     marginBottom: 10,
     fontSize: 16,
     fontWeight: 700,
