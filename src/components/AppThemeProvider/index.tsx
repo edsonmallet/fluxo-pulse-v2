@@ -10,7 +10,7 @@ const AppThemeProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', () => {
-      window.scroll(0, 1)
+      window.scrollTo(0, 1)
     })
   }, [])
 

@@ -54,6 +54,7 @@ const QuestionActions: React.FC<QuestionActionsProps> = React.memo(
           variant="outlined"
           color="secondary"
           size="small"
+          endIcon={<Check />}
           onClick={onSkip}
         >
           {text('buttonSkipPulse')}
