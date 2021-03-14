@@ -4,7 +4,7 @@ import personalStyles from '@styles/styles'
 const useStyles = makeStyles(theme => ({
   container: {
     width: '100vw',
-    height: '96vh',
+    height: '94vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
