@@ -14,6 +14,7 @@ interface SettingContextData {
   settings: ISettings
   saveSettings(data: ISettings): void
   clearSettings(): void
+  resetDayVotes(): void
 }
 
 const defaultSettings: ISettings = {
@@ -28,7 +29,8 @@ const defaultSettings: ISettings = {
 const SettingsContext = createContext<SettingContextData>({
   settings: defaultSettings,
   saveSettings: () => {},
-  clearSettings: () => {}
+  clearSettings: () => {},
+  resetDayVotes: () => {}
 } as SettingContextData)
 
 export const SettingsProvider = ({ settings, children }) => {
@@ -45,15 +47,18 @@ export const SettingsProvider = ({ settings, children }) => {
     window.localStorage.setItem('settings', JSON.stringify(settings))
   }
 
-  const resetDayVotes = (storedData: string): string => {
-    const store = JSON.parse(storedData)
-    const now = formatDateBr()
-    if (new Date(now).getTime() > new Date(store.currentDate).getTime()) {
-      store.maxResponseDay = 10
-      store.numberResponseDay = 1
+  const resetDayVotes = (): void => {
+    let settings = null
+    let storedData = window.localStorage.getItem('settings')
+    if (storedData) {
+      settings = JSON.parse(storedData)
+      const now = formatDateBr()
+      if (new Date(now).getTime() > new Date(settings.currentDate).getTime()) {
+        settings.maxResponseDay = 10
+        settings.numberResponseDay = 1
+      }
+      saveSettings(settings)
     }
-
-    return JSON.stringify(store)
   }
 
   const restoreSettings = (): ISettings => {
@@ -62,7 +67,6 @@ export const SettingsProvider = ({ settings, children }) => {
     try {
       let storedData = window.localStorage.getItem('settings')
       if (storedData) {
-        storedData = resetDayVotes(storedData)
         settings = JSON.parse(storedData)
       }
     } catch (err) {
@@ -88,7 +92,8 @@ export const SettingsProvider = ({ settings, children }) => {
       value={{
         settings: currentSettings,
         saveSettings,
-        clearSettings
+        clearSettings,
+        resetDayVotes
       }}
     >
       {children}
