@@ -86,7 +86,7 @@ const Decision: NextPage = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={() => router.push('/exit')}
+            onClick={() => router.push('/finished')}
             className={classes.button}
           >
             {text('decisionButtonFinish')}

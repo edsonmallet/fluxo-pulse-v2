@@ -13,7 +13,7 @@ const Login: NextPage = () => {
   const classes = useStyles()
   const { text } = useTranslation()
   const router = useRouter()
-  const { settings } = useSettings()
+  const { settings, resetDayVotes } = useSettings()
 
   const [codePulse, setCodePulse] = useState<string>('')
   const [codeValid, setCodeValid] = useState<boolean>(false)
@@ -43,10 +43,11 @@ const Login: NextPage = () => {
   }
 
   useEffect(() => {
+    resetDayVotes()
     if (settings.tokenPulse && settings.numberResponseDay <= 20) {
       router.push('/questions')
     }
-  })
+  }, [])
 
   return (
     <>

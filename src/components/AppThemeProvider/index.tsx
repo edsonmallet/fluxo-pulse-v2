@@ -2,20 +2,17 @@ import { LanguageProvider } from '@contexts/Intl'
 import useSettings, { SettingsProvider } from '@contexts/Settings'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '@styles/theme'
-import { useEffect } from 'react'
 
 const AppThemeProvider: React.FC = ({ children }) => {
-  const { settings, resetDayVotes } = useSettings()
-
-  useEffect(() => resetDayVotes(), [])
+  const { settings } = useSettings()
 
   return (
     <>
-      <LanguageProvider>
-        <SettingsProvider settings={settings}>
+      <SettingsProvider settings={settings}>
+        <LanguageProvider>
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        </SettingsProvider>
-      </LanguageProvider>
+        </LanguageProvider>
+      </SettingsProvider>
     </>
   )
 }
