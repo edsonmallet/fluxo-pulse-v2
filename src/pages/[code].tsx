@@ -114,20 +114,23 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
   useEffect(() => {
     const settingsInitial = JSON.parse(window.localStorage.getItem('settings'))
 
-    if (
-      settingsInitial.code.toLocaleUpperCase() !=
-      companyWithGroups.code.toLocaleUpperCase()
-    ) {
-      clearSettings()
-      router.push(`/${companyWithGroups.code}`)
+    if (settingsInitial) {
+      if (
+        settingsInitial.code.toLocaleUpperCase() !=
+        companyWithGroups.code.toLocaleUpperCase()
+      ) {
+        clearSettings()
+        router.push(`/${companyWithGroups.code}`)
+      }
+
+      if (
+        settingsInitial.tokenPulse &&
+        settingsInitial.code == companyWithGroups.code
+      ) {
+        router.push(`/questions`)
+      }
     }
 
-    if (
-      settingsInitial.tokenPulse &&
-      settingsInitial.code == companyWithGroups.code
-    ) {
-      router.push(`/questions`)
-    }
     if (!companyWithGroups) {
       Swal.fire({
         icon: 'error',
