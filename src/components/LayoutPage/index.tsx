@@ -5,6 +5,7 @@ import useStyles from './styles'
 import { Button, Typography } from '@material-ui/core'
 import useSettings from '@contexts/Settings'
 import { useRouter } from 'next/router'
+import useTranslation from '@contexts/Intl'
 
 interface LayoutProps {
   logo?: string
@@ -14,6 +15,7 @@ interface LayoutProps {
 const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
   const classes = useStyles()
   const { settings } = useSettings()
+  const { text } = useTranslation()
   const router = useRouter()
   return (
     <>
@@ -56,7 +58,7 @@ const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
               size="small"
               onClick={() => router.push('/finished')}
             >
-              ENCERRAR
+              {text('finishedFooter')}
             </Button>
           </div>
         </footer>

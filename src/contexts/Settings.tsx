@@ -14,6 +14,7 @@ interface SettingContextData {
   settings: ISettings
   saveSettings(data: ISettings): void
   clearSettings(): void
+  resetDayVotes(): void
 }
 
 const defaultSettings: ISettings = {
@@ -25,70 +26,78 @@ const defaultSettings: ISettings = {
   code: ''
 }
 
+const storeSettings = (settings: ISettings): void => {
+  window.localStorage.setItem('settings', JSON.stringify(settings))
+}
+
+const restoreSettings = (): ISettings => {
+  let settings = null
+
+  try {
+    let storedData = window.localStorage.getItem('settings')
+    if (storedData) {
+      settings = JSON.parse(storedData)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+
+  return settings
+}
+
 const SettingsContext = createContext<SettingContextData>({
   settings: defaultSettings,
   saveSettings: () => {},
-  clearSettings: () => {}
+  clearSettings: () => {},
+  resetDayVotes: () => {}
 } as SettingContextData)
 
 export const SettingsProvider = ({ settings, children }) => {
   const [currentSettings, setCurrentSettings] = useState<ISettings | null>(
-    settings || null
+    settings || defaultSettings
   )
 
-  const clearSettings = (): void => {
+  const handleClearSettings = (): void => {
     setCurrentSettings(defaultSettings)
     window.localStorage.setItem('settings', JSON.stringify(defaultSettings))
   }
 
-  const storeSettings = (settings: ISettings): void => {
-    window.localStorage.setItem('settings', JSON.stringify(settings))
-  }
-
-  const resetDayVotes = (storedData: string): string => {
-    const store = JSON.parse(storedData)
-    const now = formatDateBr()
-    if (new Date(now).getTime() > new Date(store.currentDate).getTime()) {
-      store.maxResponseDay = 10
-      store.numberResponseDay = 1
-    }
-
-    return JSON.stringify(store)
-  }
-
-  const restoreSettings = (): ISettings => {
+  const handleResetDayVotes = (): void => {
     let settings = null
+    let storedData = window.localStorage.getItem('settings')
 
-    try {
-      let storedData = window.localStorage.getItem('settings')
-      if (storedData) {
-        storedData = resetDayVotes(storedData)
-        settings = JSON.parse(storedData)
+    if (storedData) {
+      settings = JSON.parse(storedData)
+      const now = formatDateBr()
+      if (now > settings.currentDate) {
+        settings.maxResponseDay = 10
+        settings.numberResponseDay = 1
+        settings.currentDate = now
       }
-    } catch (err) {
-      console.error(err)
+      setCurrentSettings(settings)
+      storeSettings(settings)
     }
-
-    return settings
   }
 
-  const saveSettings = (update: ISettings): void => {
-    const mergedSettings = update
-    setCurrentSettings(mergedSettings)
-    storeSettings(mergedSettings)
+  const handleSaveSettings = (update: ISettings): void => {
+    setCurrentSettings(update)
+    storeSettings(update)
   }
 
   useEffect(() => {
     const restoredSettings = restoreSettings()
-    if (restoredSettings) setCurrentSettings(restoredSettings)
+    if (restoredSettings) {
+      setCurrentSettings(restoredSettings)
+    }
   }, [])
 
   return (
     <SettingsContext.Provider
       value={{
         settings: currentSettings,
-        saveSettings,
-        clearSettings
+        saveSettings: handleSaveSettings,
+        clearSettings: handleClearSettings,
+        resetDayVotes: handleResetDayVotes
       }}
     >
       {children}
