@@ -1,10 +1,9 @@
 import axios from 'axios'
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
 
 const api = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://127.0.0.1:3344/api/v1'
-      : 'https://dev-app-fluxo-live.herokuapp.com/api/v1'
+  baseURL: publicRuntimeConfig.backendUrl
 })
 
 export default api
