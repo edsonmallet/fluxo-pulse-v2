@@ -27,7 +27,7 @@ const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
         <header className={classes.header}>
           <Image
             width={128}
-            height={48}
+            height={65}
             alt="Logo"
             quality={100}
             src={logo || settings.logo || '/logos/fluxo_logo.svg'}

@@ -24,14 +24,16 @@ const Questions: NextPage = () => {
   const [noteSelected, setNoteSelected] = useState<string>(null)
   const [answerSelected, setAnswerSelected] = useState<string>(null)
   const [loadingVote, setLoadingVote] = useState<boolean>(false)
-  const [responseVote, setResponseVote] = useState<ResponseVote | null>(null)
+  const [responseVote, setResponseVote] = useState<ResponseVote>({
+    status: false,
+    message: ''
+  })
   const { text } = useTranslation()
   const { settings, saveSettings, clearSettings } = useSettings()
   const router = useRouter()
   const classes = useStyles()
 
   const getQuestion = async () => {
-    setResponseVote(null)
     setCurrentQuestion(null)
     const question = await getNextQuestion()
     setNoteSelected(null)
@@ -91,8 +93,17 @@ const Questions: NextPage = () => {
   return (
     <>
       <LayoutPage>
-        {responseVote && !!responseVote.message && (
-          <Toast message={responseVote.message} status={responseVote.status} />
+        {responseVote.status && !!responseVote.message && (
+          <Toast
+            message={responseVote.message}
+            status={responseVote.status}
+            onClose={() =>
+              setResponseVote({
+                status: false,
+                message: ''
+              })
+            }
+          />
         )}
         {!currentQuestion ? (
           <LoadingQuestion label={text('loadingQuestion')} />

@@ -1,6 +1,5 @@
 import { Snackbar } from '@material-ui/core'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
-import { useState } from 'react'
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -8,23 +7,23 @@ function Alert(props: AlertProps) {
 
 interface ToastProps {
   message: string
-  status?: boolean
+  status: boolean
+  onClose: (event: any) => void
 }
-const Toast: React.FC<ToastProps> = ({ message, status }: ToastProps) => {
-  const [openToast, setOpenToast] = useState<boolean>(true)
-
+const Toast: React.FC<ToastProps> = ({
+  message,
+  status,
+  onClose
+}: ToastProps) => {
   return (
     <>
       <Snackbar
-        open={openToast}
-        autoHideDuration={2000}
-        onClose={() => setOpenToast(false)}
+        open={status}
+        autoHideDuration={3000}
+        onClose={onClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert
-          onClose={() => setOpenToast(false)}
-          severity={status ? 'success' : 'error'}
-        >
+        <Alert onClose={onClose} severity={status ? 'success' : 'error'}>
           {message}
         </Alert>
       </Snackbar>

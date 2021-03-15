@@ -7,9 +7,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     width: '100vw',
     height: '100vh',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: 'linear-gradient(217deg, #eee 0%, #ccc 100%)',
     [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.primary.main
+      backgroudColor: theme.palette.primary.main
     }
   },
   container: {
@@ -23,10 +23,13 @@ const useStyles = makeStyles(theme => ({
       height: '98vh',
       boxShadow: 'none'
     },
-    boxShadow: '2px 5px 10px 1px #eee'
+    boxShadow: '2px 5px 10px 0px #ccc'
   },
   leftImage: {
     width: '60%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
@@ -40,9 +43,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     backgroundColor: theme.palette.background.paper,
     padding: '50px',
+    borderRadius: 16,
     [theme.breakpoints.down('sm')]: {
-      padding: '20px',
-      borderRadius: 16
+      padding: '20px'
     }
   },
   titles: {
