@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import AppThemeProvider from '@components/AppThemeProvider'
 import NextNprogress from 'nextjs-progressbar'
 import theme from '@styles/theme'
+import Head from 'next/head'
 
 const MyApp: React.FC<AppProps> = (props: AppProps) => {
   const { Component, pageProps } = props
@@ -17,6 +18,12 @@ const MyApp: React.FC<AppProps> = (props: AppProps) => {
 
   return (
     <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+        />
+      </Head>
       <AppThemeProvider>
         <CssBaseline />
         <NextNprogress
