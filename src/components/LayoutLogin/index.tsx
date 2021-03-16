@@ -4,6 +4,7 @@ import useTranslation from '@contexts/Intl'
 import Head from 'next/head'
 import useStyles from './styles'
 import { memo, ReactNode } from 'react'
+import Link from 'next/link'
 
 interface LayoutLoginProps {
   children: ReactNode
@@ -22,15 +23,7 @@ const LayoutLogin: React.FC<LayoutLoginProps> = (props: LayoutLoginProps) => {
       </Head>
       <div className={classes.root}>
         <div className={classes.container}>
-          <div className={classes.leftImage}>
-            <Image
-              src="/images/login.png"
-              width={300}
-              height={400}
-              layout="fixed"
-              loading="eager"
-            />
-          </div>
+          <div className={classes.leftImage}></div>
           <div className={classes.rightForm}>
             <div className={classes.titles}>
               <Image
@@ -48,13 +41,19 @@ const LayoutLogin: React.FC<LayoutLoginProps> = (props: LayoutLoginProps) => {
             </div>
             {props.children}
             <div className={classes.footer}>
-              <Typography className={classes.footerText}>Powered By</Typography>
-              <Image
-                src="/logos/fluxo_icon.svg"
-                width={24}
-                height={24}
-                loading="eager"
-              />
+              <Link href="https://fluxo.live">
+                <a target="_blank">
+                  <Typography className={classes.footerText}>
+                    Powered By
+                    <Image
+                      src="/logos/fluxo_icon.svg"
+                      width={24}
+                      height={24}
+                      loading="eager"
+                    />
+                  </Typography>
+                </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { Button, Typography } from '@material-ui/core'
 import useSettings from '@contexts/Settings'
 import { useRouter } from 'next/router'
 import useTranslation from '@contexts/Intl'
+import Link from 'next/link'
 
 interface LayoutProps {
   logo?: string
@@ -25,14 +26,10 @@ const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
       </Head>
       <div className={classes.container}>
         <header className={classes.header}>
-          <Image
-            width={128}
-            height={65}
-            alt="Logo"
-            quality={100}
+          <img
             src={logo || settings.logo || '/logos/fluxo_logo.svg'}
-            loading="eager"
-            layout="fixed"
+            alt="logo"
+            className={classes.imgFluid}
           />
         </header>
 
@@ -42,15 +39,19 @@ const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
 
         <footer className={classes.footer}>
           <div className={classes.poweredby}>
-            <Typography className={classes.poweredbyText}>
-              Powered By
-            </Typography>
-            <Image
-              src="/logos/fluxo_icon.svg"
-              width={18}
-              height={18}
-              loading="eager"
-            />
+            <Link href="https://fluxo.live">
+              <a target="_blank">
+                <Typography className={classes.footerText}>
+                  Powered By
+                  <Image
+                    src="/logos/fluxo_icon.svg"
+                    width={24}
+                    height={24}
+                    loading="eager"
+                  />
+                </Typography>
+              </a>
+            </Link>
           </div>
           <div>
             <Button
