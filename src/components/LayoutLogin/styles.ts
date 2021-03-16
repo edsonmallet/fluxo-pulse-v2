@@ -1,4 +1,14 @@
-import { makeStyles } from '@material-ui/core'
+import { colors, makeStyles } from '@material-ui/core'
+
+const imgsLeft = [
+  'login_img_1.png',
+  'login_img_2.png',
+  'login_img_3.png',
+  'login_img_4.png',
+  'login_img_5.png'
+]
+
+const random = Math.floor(Math.random() * imgsLeft.length)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -7,33 +17,36 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     width: '100vw',
     height: '100vh',
-    backgroundColor: 'linear-gradient(217deg, #eee 0%, #ccc 100%)',
-    [theme.breakpoints.down('sm')]: {
-      backgroudColor: theme.palette.primary.main
-    }
+    background: 'linear-gradient(217deg, #00ab6480 0%, #3398dc80 100%)'
   },
   container: {
     width: '50vw',
-    height: '70vh',
+    height: '68vh',
     display: 'flex',
     borderRadius: 16,
     backgroundColor: theme.palette.background.paper,
     [theme.breakpoints.down('sm')]: {
-      width: '97vw',
-      height: '98vh',
+      width: '95vw',
+      height: '90vh',
       boxShadow: 'none'
     },
-    boxShadow: '2px 5px 10px 0px #ccc'
+    boxShadow: '0px 10px 15px #0000001A'
   },
   leftImage: {
-    width: '60%',
+    width: '65%',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'center',
+    backgroundImage: `url(/images/${imgsLeft[random]})`,
+    backgroundPositionX: 'center',
+    backgroundPositionY: 'center',
+    backgroundSize: 'cover',
+    borderRadius: 16,
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
   },
+
   rightForm: {
     width: '100%',
     display: 'flex',
@@ -63,11 +76,20 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     height: 50,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+
+    '& > a ': {
+      textDecoration: 'none'
+    }
   },
   footerText: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     fontSize: 12,
-    fontWeight: 600
+    fontWeight: 600,
+    textDecoration: 'none',
+    color: '#777'
   }
 }))
 

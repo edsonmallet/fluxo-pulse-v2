@@ -54,10 +54,27 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
+  imgFluid: {
+    width: '100%',
+    maxWidth: 128,
+    height: 'auto'
+  },
+  footerText: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 12,
+    fontWeight: 600,
+    textDecoration: 'none',
+    color: '#777'
+  },
   poweredby: {
     display: 'flex',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    '& > a ': {
+      textDecoration: 'none'
+    }
   },
   poweredbyText: {
     fontSize: 10,

@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 10
   },
   selectField: {
-    padding: '10px 0'
+    padding: 0
   }
 }))
 
