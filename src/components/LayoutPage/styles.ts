@@ -66,13 +66,17 @@ const useStyles = makeStyles(theme => ({
     fontSize: 12,
     fontWeight: 600,
     textDecoration: 'none',
-    color: '#777'
+    color: '#777',
+    paddingRight: 5
   },
   poweredby: {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
     '& > a ': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       textDecoration: 'none'
     }
   },

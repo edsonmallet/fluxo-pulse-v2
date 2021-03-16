@@ -70,15 +70,15 @@ const useStyles = makeStyles(theme => ({
   footer: {
     width: '100%',
     padding: '0 0 10px 0',
-    display: 'flex',
     fontSize: 0.7,
     fontWeight: 700,
     bottom: 0,
     height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
 
     '& > a ': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       textDecoration: 'none'
     }
   },
@@ -86,8 +86,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 12,
-    fontWeight: 600,
+    fontSize: 10,
+    fontWeight: 900,
+    paddingRight: 5,
     textDecoration: 'none',
     color: '#777'
   }

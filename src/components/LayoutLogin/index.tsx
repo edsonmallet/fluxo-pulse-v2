@@ -45,13 +45,13 @@ const LayoutLogin: React.FC<LayoutLoginProps> = (props: LayoutLoginProps) => {
                 <a target="_blank">
                   <Typography className={classes.footerText}>
                     Powered By
-                    <Image
-                      src="/logos/fluxo_icon.svg"
-                      width={24}
-                      height={24}
-                      loading="eager"
-                    />
                   </Typography>
+                  <Image
+                    src="/logos/fluxo_icon.svg"
+                    width={18}
+                    height={18}
+                    loading="eager"
+                  />
                 </a>
               </Link>
             </div>
