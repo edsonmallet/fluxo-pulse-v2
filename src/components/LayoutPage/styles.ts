@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   imgFluid: {
-    width: '100%',
+    width: 'auto',
     maxWidth: 100,
     maxHeight: 50,
     height: 'auto'
