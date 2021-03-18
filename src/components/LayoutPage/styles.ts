@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '10px 0',
-    width: '100%'
+    width: '100%',
+    height: 60
   },
   main: {
     padding: '10px 20px',
@@ -56,7 +57,8 @@ const useStyles = makeStyles(theme => ({
   },
   imgFluid: {
     width: '100%',
-    maxWidth: 128,
+    maxWidth: 100,
+    maxHeight: 50,
     height: 'auto'
   },
   footerText: {
