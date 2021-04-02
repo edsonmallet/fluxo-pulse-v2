@@ -2,86 +2,97 @@
   width: 100%;
   position: relative;
 }
-.ImagesList {
+.imageList {
   width: 100%;
+  border-radius: 8px;
   margin: 0 auto;
   display: flex;
   padding: 10px 10px 10px 10px;
   justify-content: space-between;
   align-items: stretch;
   overflow-x: auto;
-}
-.ImagesList:before {
-  font-family: 'Font Awesome 5 free';
-  font-weight: 900;
-  content: '\f053';
-  position: absolute;
-  font-size: 24px;
-  top: 40%;
-  left: -18px;
-  color: #ccc;
-}
-.ImagesList:after {
-  font-family: 'Font Awesome 5 free';
-  font-weight: 900;
-  content: '\f054';
-  position: absolute;
-  font-size: 24px;
-  top: 40%;
-  right: -18px;
-  color: #ccc;
+  background-color: #f5f4f3;
+  background-image:
+
+  /* Shadows */
+  linear-gradient(to right, #f5f4f3, #f5f4f3),
+  linear-gradient(to right, #f5f4f3, #f5f4f3),
+
+  /* Shadow covers */
+  linear-gradient(to right, rgba(0,0,0,.16), rgba(255,255,255,0)),
+  linear-gradient(to left, rgba(0,0,0,.16), rgba(255,255,255,0));
+
+  background-position: left center, right center, left center, right center;
+	background-repeat: no-repeat;
+	background-size: 25px 100%, 25px 100%, 20px 100%, 25px 100%;
+	/* Opera doesn't support this in the shorthand */
+	background-attachment: local, local, scroll, scroll;
 }
 
-.ImagesList::-webkit-scrollbar-track {
+.imageList::-webkit-scrollbar-track {
   background-color: #eee;
 }
 
-.ImagesList::-webkit-scrollbar {
-  height: 3px;
+.imageList::-webkit-scrollbar {
+  height: 5px;
   background-color: #eee;
 }
 
-.ImagesList::-webkit-scrollbar-thumb {
+.imageList::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border: 1px solid #ccc;
 }
 
-.ImagesList input {
+.imageList input {
   display: none;
 }
 
-.ImagesList label {
+.imageList label {
   opacity: 0.6;
   float: right;
   transition: all 0.2s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 200;
-  margin: 10px;
+  max-width: 200px;
+  margin: 8px;
   border: 4px solid transparent;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: all 250ms cubic-bezier(.4,.25,.3,1);
 }
 
-.ImagesList label img {
+.imageList label:hover, .imageList label:active { transform: scale(1.02); }
+
+.imageList label:hover { background-color: #fff; }
+
+.imageList label img {
   width: 150px;
 }
-.ImagesList label p {
+.imageList label p {
   text-align: center;
   font-weight: 900;
   font-size: 0.9rem !important;
-  min-height: 30px;
+  min-height: auto;
+  padding: 8px;
+  margin: auto 0
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
 
-.ImagesList > input:checked + label {
+.imageList > input:checked + label {
   opacity: 1;
   border: 4px solid #04d47e;
   box-shadow: 0px 0px 10px 0px #ccc;
+  background-color: #fff;
 }
-.ImagesList input:not(:checked) + label:hover {
+
+.imageList > input:checked + label img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.imageList input:not(:checked) + label:hover {
   opacity: 1;
   border: 4px solid #04d47e;
   box-shadow: 0px 0px 4px 0px #ccc;
@@ -89,103 +100,107 @@
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
-  .ImagesList > label:before {
+  .imageList > label:before {
     font-size: 3em;
   }
-  .ImagesList {
-    max-width: 280px;
+
+  .imageList {
+    max-width: 100vw;
+    border-radius: 0;
   }
-  .ImagesList label img {
+  .imageList label img {
     width: 110px;
   }
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 375px) {
-  .ImagesList > label:before {
+  .imageList > label:before {
     font-size: 3em;
   }
-  .ImagesList {
-    max-width: 330px;
+  .imageList {
+    max-width: 100vw;
   }
-  .ImagesList label img {
-    width: 110px;
+  .imageList label img {
+    width: 120px;
   }
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 414px) {
-  .ImagesList > label:before {
+  .imageList > label:before {
     font-size: 3em;
   }
-  .ImagesList {
-    max-width: 370px;
+  .imageList {
+    max-width: 100vw;
   }
-  .ImagesList label img {
-    width: 110px;
+  .imageList label img {
+    width: 130px;
   }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
-  .ImagesList > label:before {
+  .imageList > label:before {
     font-size: 3em;
   }
-  .ImagesList {
-    max-width: 460px;
+  .imageList {
+    max-width: 100vw;
   }
-  .ImagesList label img {
+  .imageList label img {
     width: 140px;
   }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
-  .ImagesList > label:before {
+  .imageList > label:before {
     font-size: 4em;
   }
-  .ImagesList {
-    max-width: 748px;
+  .imageList {
+    max-width: 100vw;
   }
-  .ImagesList label img {
+  .imageList label img {
     width: 130px;
   }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
-  .ImagesList > label:before {
+  .imageList > label:before {
     font-size: 5em;
   }
-  .ImagesList {
-    max-width: 972px;
+  .imageList {
+    max-width: 80vw;
+    border-radius: 8px;
   }
-  .ImagesList label img {
+  .imageList label img {
     width: 130px;
   }
-  .ImagesList:before {
+  .imageList:before {
     content: '';
   }
-  .ImagesList:after {
+  .imageList:after {
     content: '';
   }
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
-  .ImagesList > label:before {
+  .imageList > label:before {
     font-size: 6em;
   }
-  .ImagesList {
-    max-width: 1180px;
+  .imageList {
+    max-width: 80vw;
+    border-radius: 8px;
   }
-  .ImagesList label img {
-    width: 160px;
+  .imageList label img {
+    width: 170px;
   }
-  .ImagesList:before {
+  .imageList:before {
     content: '';
   }
-  .ImagesList:after {
+  .imageList:after {
     content: '';
   }
 }

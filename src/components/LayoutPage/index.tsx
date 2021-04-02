@@ -2,7 +2,7 @@ import { memo, ReactNode } from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
 import useStyles from './styles'
-import { Button, Typography } from '@material-ui/core'
+import { Button, Typography, LinearProgress } from '@material-ui/core'
 import useSettings from '@contexts/Settings'
 import { useRouter } from 'next/router'
 import useTranslation from '@contexts/Intl'
@@ -18,6 +18,8 @@ const LayoutPage: React.FC<LayoutProps> = ({ children, logo }: LayoutProps) => {
   const { settings } = useSettings()
   const { text } = useTranslation()
   const router = useRouter()
+  const normalise = (current: number, max: number) => (current * 100) / max
+
   return (
     <>
       <Head>

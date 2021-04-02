@@ -16,25 +16,29 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '10px 0',
+    padding: '8px',
     width: '100%',
-    height: 60
+    height: 'auto'
   },
   main: {
-    padding: '10px 20px',
+    padding: '10px 0',
     display: 'flex',
     width: '100%',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
     overflow: 'auto',
+    background: 'linear-gradient(white 30%, rgba(255,255,255,0)), linear-gradient(rgba(255,255,255,0), white 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)), radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 40px, 100% 40px, 100% 14px, 100% 14px',
+    backgroundAttachment: 'local, local, scroll, scroll',
 
     '&::-webkit-scrollbar-track': {
       backgroundColor: personalStyles.colors.silver
     },
 
     '&::-webkit-scrollbar': {
-      width: 3,
+      width: 6,
       backgroundColor: personalStyles.colors.silver
     },
 

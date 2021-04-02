@@ -23,14 +23,16 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    padding: '0 18px'
   },
   forms: {
     margin: '20px 0px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: '0 18px'
   },
   textArea: {
     width: '100%',

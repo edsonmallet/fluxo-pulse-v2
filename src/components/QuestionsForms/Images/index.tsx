@@ -23,7 +23,7 @@ const ImagesList: React.FC<ImagesListProps> = ({
 
   return (
     <div className={styles.boxRating}>
-      <div className={styles.ImagesList} ref={divRef}>
+      <div className={styles.imageList} ref={divRef}>
         {options.map((item, index) => (
           <React.Fragment key={index}>
             <input

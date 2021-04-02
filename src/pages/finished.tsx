@@ -11,7 +11,12 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    maxWidth: '60%',
+    padding: '0 20px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+    }
   },
   forms: {
     margin: '20px 0px',
@@ -26,6 +31,9 @@ const useStyles = makeStyles(theme => ({
 
   button: {
     margin: '10px'
+  },
+  txtTitle: {
+    margin: '16px 0'
   }
 }))
 
@@ -50,7 +58,7 @@ const Finished: NextPage = () => {
             height={32}
             loading="eager"
           />
-          <Typography variant="h5" component="h1">
+          <Typography variant="h5" component="h1" className={classes.txtTitle}>
             {text('finishedTitle')}
           </Typography>
           <Typography variant="body1">{text('finishedDescription')}</Typography>

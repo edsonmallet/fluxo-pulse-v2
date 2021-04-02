@@ -1,5 +1,8 @@
 .boxRating {
   width: 100%;
+  background-color: #f5f4f3;
+  padding: 10px 10px 10px 10px;
+  border-radius:  8px;
 }
 .ratingStar {
   width: fit-content;
@@ -25,9 +28,10 @@
 }
 
 .ratingStar > label {
-  color: #eee;
+  color: #d6d6d6;
   float: right;
   transition: all 0.5s;
+  padding: 8px;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -50,6 +54,10 @@
   .ratingStar > label:before {
     font-size: 3em;
   }
+
+  .ratingStar > label { padding: 0;}
+
+  .boxRating { border-radius: 0; }
 }
 
 /* Extra Small Devices, Phones */
@@ -57,6 +65,10 @@
   .ratingStar > label:before {
     font-size: 3em;
   }
+
+  .ratingStar > label { padding: 5px;}
+
+  .boxRating { border-radius: 0; }
 }
 
 /* Small Devices, Tablets */
@@ -64,6 +76,8 @@
   .ratingStar > label:before {
     font-size: 4em;
   }
+
+  .boxRating { width: 95%; border-radius: 8px; }
 }
 
 /* Medium Devices, Desktops */
@@ -71,6 +85,8 @@
   .ratingStar > label:before {
     font-size: 5em;
   }
+
+  .boxRating { width: 85%; border-radius: 8px; }
 }
 
 /* Large Devices, Wide Screens */
@@ -78,4 +94,6 @@
   .ratingStar > label:before {
     font-size: 6em;
   }
+
+  .boxRating { width: 90%; border-radius: 8px; }
 }

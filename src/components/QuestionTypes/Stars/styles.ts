@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   questionTitle: {
-    marginBottom: 30,
+    marginBottom: 20,
+    padding: '0 20px',
     textAlign: 'center',
     fontWeight: 900,
     fontSize: 16,
