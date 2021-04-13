@@ -58,22 +58,27 @@ const useStyles = makeStyles(theme => ({
     padding: '50px',
     borderRadius: 16,
     [theme.breakpoints.down('sm')]: {
-      padding: '20px'
+      padding: '24px',
+      marginTop: '24px'
     }
   },
   titles: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+
+    '& > h1': {
+      padding: '8px 0'
+    }
   },
   footer: {
     width: '100%',
-    padding: '0 0 10px 0',
+    padding: '10px 10px 0 10px',
     fontSize: 0.7,
     fontWeight: 700,
     bottom: 0,
-    height: 50,
+    height: 'auto',
 
     '& > a ': {
       display: 'flex',

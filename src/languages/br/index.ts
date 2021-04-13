@@ -61,6 +61,7 @@ export const StringsPortuguese = {
   decisionButtonFinish: 'Encerrar Pesquisa',
   decisionButtonMore: 'Responder + 10',
   decisionButtonFeedback: 'Enviar Feedback',
+  decisionInstruction: 'Arraste para o lado para ver mais opções',
 
   /** Page Finished */
   finishedTitle: 'Obrigado por participar',

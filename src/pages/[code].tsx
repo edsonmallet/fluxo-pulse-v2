@@ -47,7 +47,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    padding: '0 20px'
   },
   selects: {
     minHeight: 380,
@@ -55,7 +56,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: '0 20px'
   },
   formControl: {
     width: '100%',
@@ -66,7 +68,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: 20
   },
   privacy: {
-    marginTop: 20
+    marginTop: 20,
+    padding: '0 20px'
   }
 }))
 
