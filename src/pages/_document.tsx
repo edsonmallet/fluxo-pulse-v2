@@ -17,6 +17,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
           />
+          <script type="text/javascript" src="/js/smartlook.js"></script>
         </Head>
         <body>
           <Main />
