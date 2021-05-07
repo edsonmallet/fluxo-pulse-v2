@@ -1,4 +1,4 @@
-import { colors, makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 
 const imgsLeft = [
   'login_img_1.png',
@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
     backgroundPositionX: 'center',
     backgroundPositionY: 'center',
     backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
     borderRadius: 16,
     [theme.breakpoints.down('sm')]: {
       display: 'none'
