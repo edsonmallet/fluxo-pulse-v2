@@ -107,10 +107,6 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
     }
   }
 
-  const validForm = Object.values(user).some(
-    item => item.length === 0 || item === 0
-  )
-
   useEffect(() => {
     const settingsInitial = JSON.parse(window.localStorage.getItem('settings'))
 
@@ -198,7 +194,7 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
               endIcon={<ArrowForwardOutlinedIcon />}
               className={classes.button}
               onClick={() => handleInitPulse()}
-              disabled={validForm}
+              disabled={user.subgroup === 0}
             >
               {text('nextButton')}
             </Button>
