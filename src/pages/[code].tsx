@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
 
 const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
   const { text } = useTranslation()
-  const { settings, saveSettings, clearSettings } = useSettings()
+  const { settings, saveSettings, clearSettings, resetDayVotes } = useSettings()
   const router = useRouter()
   const classes = useStyles()
   const [user, setUser] = useState<INewUser>(defaultUser)
@@ -108,6 +108,7 @@ const Home: NextPage<HomeProps> = (companyWithGroups: ResponseCompany) => {
   }
 
   useEffect(() => {
+    resetDayVotes()
     const settingsInitial = JSON.parse(window.localStorage.getItem('settings'))
 
     if (settingsInitial) {
