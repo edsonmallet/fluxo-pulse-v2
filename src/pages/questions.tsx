@@ -29,7 +29,7 @@ const Questions: NextPage = () => {
     message: ''
   })
   const { text } = useTranslation()
-  const { settings, saveSettings, clearSettings } = useSettings()
+  const { settings, saveSettings, clearSettings, resetDayVotes } = useSettings()
   const router = useRouter()
   const classes = useStyles()
 
@@ -65,8 +65,8 @@ const Questions: NextPage = () => {
       })
       const resVote = await vote({
         tokenPulse: settings.tokenPulse,
-        answerId: (answerSelected as unknown) as number,
-        note: (noteSelected as unknown) as number
+        answerId: answerSelected as unknown as number,
+        note: noteSelected as unknown as number
       })
       setResponseVote(resVote)
     } catch (error) {
@@ -78,6 +78,7 @@ const Questions: NextPage = () => {
   }
 
   useEffect(() => {
+    resetDayVotes()
     const settingsInital = JSON.parse(window.localStorage.getItem('settings'))
     if (!settingsInital || !settingsInital.tokenPulse) {
       clearSettings()
