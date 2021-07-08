@@ -25,7 +25,7 @@ export const StringsPortuguese = {
     { value: '18-25', label: '18-25 anos' },
     { value: '26-35', label: '26-35 anos' },
     { value: '36-45', label: '36-45 anos' },
-    { value: '45-59', label: '45-59 anos' },
+    { value: '46-59', label: '46-59 anos' },
     { value: '+60', label: '+60 anos' }
   ],
   labelAgeWork: 'Tempo de casa',
